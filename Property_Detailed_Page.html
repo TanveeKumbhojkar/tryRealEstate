@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Westend Residences - Premium Residential Project</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#FF5722',secondary:'#1F2937'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+}
+.hero-section {
+background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('https://readdy.ai/api/search-image?query=Modern%20luxury%20residential%20apartment%20building%20with%20swimming%20pool%20at%20night%2C%20elegant%20architecture%2C%20warm%20lighting%2C%20peaceful%20environment%2C%20high-end%20residential%20complex%20with%20glass%20facades%20and%20balconies%2C%20ambient%20lighting%2C%20luxury%20lifestyle&width=1280&height=600&seq=1&orientation=landscape');
+background-size: cover;
+background-position: center;
+}
+.amenity-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.image-gallery img:hover {
+transform: scale(1.02);
+}
+input:focus, textarea:focus {
+outline: none;
+border-color: #FF5722;
+}
+.custom-checkbox {
+appearance: none;
+width: 20px;
+height: 20px;
+border: 2px solid #d1d5db;
+border-radius: 4px;
+position: relative;
+cursor: pointer;
+}
+.custom-checkbox:checked {
+background-color: #FF5722;
+border-color: #FF5722;
+}
+.custom-checkbox:checked::after {
+content: "";
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 10px;
+height: 10px;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+background-size: contain;
+background-repeat: no-repeat;
+}
+.gallery-tab.active {
+color: #FF5722;
+border-bottom: 2px solid #FF5722;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<!-- Navigation -->
+<nav class="bg-white shadow-md fixed w-full z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16">
+<div class="flex items-center">
+<div class="font-['Pacifico'] text-primary text-2xl">logo</div>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a href="#" class="text-gray-700 hover:text-primary font-medium">Home</a>
+<a href="#" class="text-gray-700 hover:text-primary font-medium">Projects</a>
+<a href="#" class="text-gray-700 hover:text-primary font-medium">About Us</a>
+<a href="#" class="text-gray-700 hover:text-primary font-medium">Contact</a>
+<button class="bg-primary text-white px-4 py-2 rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap">Book Site Visit</button>
+</div>
+<div class="flex md:hidden items-center">
+<button class="text-gray-700">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-menu-line ri-lg"></i>
+</div>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="pt-24 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-gray-800 mb-6">
+<div class="flex items-center gap-2 text-lg mb-2">
+<span>Westend Residences</span>
+<span class="text-gray-400">/</span>
+<span>Apartment</span>
+<span class="text-gray-400">/</span>
+<span class="text-primary font-semibold">Luxury 2 BHK - A1204</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-bold text-gray-800">Luxury 2 BHK - A1204</h1>
+<p class="text-2xl font-semibold mt-2 text-primary">₹95 Lakhs</p>
+</div>
+<div class="relative rounded-lg overflow-hidden mb-8">
+<div id="imageCarousel" class="w-full h-[600px] relative">
+<div class="carousel-items flex transition-transform duration-300">
+<img src="https://readdy.ai/api/search-image?query=Modern%20luxury%20apartment%20living%20room%20with%20floor%20to%20ceiling%20windows%2C%20contemporary%20furniture%2C%20wooden%20flooring%2C%20ambient%20lighting%2C%20minimalist%20design&width=1200&height=600&seq=17&orientation=landscape" class="w-full h-[600px] object-cover flex-shrink-0" alt="Living Room">
+<img src="https://readdy.ai/api/search-image?query=Contemporary%20apartment%20kitchen%20with%20marble%20countertops%2C%20modern%20appliances%2C%20elegant%20lighting%2C%20breakfast%20bar%2C%20premium%20finishes&width=1200&height=600&seq=18&orientation=landscape" class="w-full h-[600px] object-cover flex-shrink-0" alt="Kitchen">
+<img src="https://readdy.ai/api/search-image?query=Luxurious%20master%20bedroom%20with%20king%20size%20bed%2C%20designer%20furniture%2C%20large%20windows%2C%20mood%20lighting%2C%20premium%20decor&width=1200&height=600&seq=19&orientation=landscape" class="w-full h-[600px] object-cover flex-shrink-0" alt="Bedroom">
+<img src="https://readdy.ai/api/search-image?query=Modern%20bathroom%20with%20walk-in%20shower%2C%20freestanding%20bathtub%2C%20marble%20tiles%2C%20premium%20fixtures%2C%20ambient%20lighting&width=1200&height=600&seq=20&orientation=landscape" class="w-full h-[600px] object-cover flex-shrink-0" alt="Bathroom">
+</div>
+<button class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white bg-opacity-80 rounded-full text-gray-800 hover:bg-opacity-100 transition-all" onclick="moveCarousel(-1)">
+<i class="ri-arrow-left-s-line ri-lg"></i>
+</button>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white bg-opacity-80 rounded-full text-gray-800 hover:bg-opacity-100 transition-all" onclick="moveCarousel(1)">
+<i class="ri-arrow-right-s-line ri-lg"></i>
+</button>
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+<button class="w-2 h-2 rounded-full bg-white bg-opacity-50 carousel-dot active" data-index="0"></button>
+<button class="w-2 h-2 rounded-full bg-white bg-opacity-50 carousel-dot" data-index="1"></button>
+<button class="w-2 h-2 rounded-full bg-white bg-opacity-50 carousel-dot" data-index="2"></button>
+<button class="w-2 h-2 rounded-full bg-white bg-opacity-50 carousel-dot" data-index="3"></button>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-white px-6 py-3 rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap">Book Property</button>
+<button class="bg-white text-primary px-6 py-3 rounded-button font-medium hover:bg-gray-100 transition-all whitespace-nowrap">Download Brochure</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Info Bar -->
+<div class="bg-white shadow-md py-6 -mt-8 relative z-10 rounded-lg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-col">
+<span class="text-gray-500 text-sm uppercase font-medium">PROPERTY TYPE</span>
+<span class="text-gray-800 font-medium">2 BHK Apartment</span>
+</div>
+<div class="flex flex-col">
+<span class="text-gray-500 text-sm uppercase font-medium">LOCATION</span>
+<span class="text-gray-800 font-medium">Wakad, Pune</span>
+</div>
+<div class="flex flex-col">
+<span class="text-gray-500 text-sm uppercase font-medium">STATUS</span>
+<span class="text-gray-800 font-medium">Under Construction</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Property Details Section -->
+<section class="py-16 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row gap-12">
+<div class="md:w-1/2">
+<h2 class="text-3xl font-bold mb-6 text-gray-800">Property Details</h2>
+<p class="text-gray-600 mb-8">
+Westend Residences is a premium residential project, offering luxurious apartments with modern amenities, close proximity to schools, shopping centers, and IT hubs. Experience the perfect blend of comfort, convenience, and sophisticated living.
+</p>
+<div class="grid grid-cols-2 gap-6 mb-8">
+<div>
+<h3 class="text-gray-500 text-sm uppercase font-medium mb-1">TYPE</h3>
+<p class="text-gray-800 font-medium">2 BHK Apartment</p>
+</div>
+<div>
+<h3 class="text-gray-500 text-sm uppercase font-medium mb-1">AREA</h3>
+<p class="text-gray-800 font-medium">1,250 sq ft</p>
+</div>
+<div>
+<h3 class="text-gray-500 text-sm uppercase font-medium mb-1">PRICE</h3>
+<p class="text-gray-800 font-medium">₹95 lakh onwards</p>
+</div>
+<div>
+<h3 class="text-gray-500 text-sm uppercase font-medium mb-1">POSSESSION</h3>
+<p class="text-gray-800 font-medium">Dec 2025</p>
+</div>
+<div>
+<h3 class="text-gray-500 text-sm uppercase font-medium mb-1">FLOOR</h3>
+<p class="text-gray-800 font-medium">10th Floor</p>
+</div>
+<div>
+<h3 class="text-gray-500 text-sm uppercase font-medium mb-1">BATHROOMS</h3>
+<p class="text-gray-800 font-medium">3 Bathrooms</p>
+</div>
+</div>
+<div class="mb-8">
+<h3 class="text-gray-800 font-medium mb-4">CONFIGURATION</h3>
+<div class="flex gap-3">
+<div class="px-4 py-2 bg-primary text-white rounded-full border border-primary whitespace-nowrap">2 BHK - 1,250 sq ft</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-white px-6 py-3 rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap">Book Property</button>
+<button class="bg-white text-primary border border-primary px-6 py-3 rounded-button font-medium hover:bg-gray-50 transition-all whitespace-nowrap">Download Brochure</button>
+</div>
+</div>
+<div class="md:w-1/2">
+<div class="rounded-lg overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=Modern%20luxury%202%20BHK%20apartment%20interior%20with%20spacious%20living%20room%2C%20contemporary%20furniture%2C%20floor%20to%20ceiling%20windows%2C%20premium%20finishes%2C%20elegant%20decor&width=600&height=500&seq=2&orientation=portrait" alt="2 BHK Interior" class="w-full h-auto object-cover">
+</div>
+<div class="pt-4 border-t border-gray-200">
+<p class="text-gray-500 text-sm mb-2">AMENITIES</p>
+<div class="flex flex-wrap gap-3">
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Swimming pool</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Gym</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Clubhouse</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Floor Plan Section -->
+<section class="py-16 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl font-bold mb-2 text-gray-800">Floor Plans</h2>
+<p class="text-gray-600 mb-8">Explore our thoughtfully designed floor plans</p>
+<div class="bg-white rounded-lg shadow-md p-6 mb-8">
+<div class="flex flex-wrap gap-4 mb-6">
+<button class="px-4 py-2 bg-primary text-white rounded-full whitespace-nowrap">2 BHK - 1,250 sq ft</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="col-span-2">
+<img src="https://readdy.ai/api/search-image?query=Detailed%20floor%20plan%20of%20a%20modern%202%20bedroom%20apartment%2C%20architectural%20drawing%2C%20clean%20lines%2C%20measurements%2C%20room%20labels%2C%20furniture%20layout%2C%20master%20bedroom%2C%20guest%20bedroom%2C%20living%20room%2C%20kitchen%2C%20balcony&width=800&height=600&seq=3&orientation=landscape" alt="2 BHK Floor Plan" class="w-full h-auto rounded-lg">
+</div>
+<div>
+<h3 class="text-xl font-bold mb-4">2 BHK Premium</h3>
+<div class="space-y-4">
+<div>
+<p class="text-gray-500 text-sm">CARPET AREA</p>
+<p class="text-gray-800 font-medium">1,050 sq ft</p>
+</div>
+<div>
+<p class="text-gray-500 text-sm">BUILT-UP AREA</p>
+<p class="text-gray-800 font-medium">1,250 sq ft</p>
+</div>
+<div>
+<p class="text-gray-500 text-sm">BEDROOMS</p>
+<p class="text-gray-800 font-medium">3</p>
+</div>
+<div>
+<p class="text-gray-500 text-sm">BATHROOMS</p>
+<p class="text-gray-800 font-medium">3</p>
+</div>
+<div>
+<p class="text-gray-500 text-sm">BALCONIES</p>
+<p class="text-gray-800 font-medium">2</p>
+</div>
+</div>
+<button class="mt-6 bg-primary text-white px-4 py-2 rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap">Download Floor Plan</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Amenities Section -->
+<section class="py-16 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl font-bold mb-2 text-gray-800">Amenities</h2>
+<p class="text-gray-600 mb-8">Experience luxury living with our world-class amenities</p>
+<div class="flex justify-center mb-8">
+<div class="inline-flex bg-gray-100 p-1 rounded-full">
+<button class="amenity-tab active px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap bg-primary text-white">Amenities</button>
+<button class="amenity-tab px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap">Community Highlights</button>
+<button class="amenity-tab px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap">Outdoor Amenities</button>
+</div>
+</div>
+<div class="amenity-content active" id="amenities">
+<div class="amenity-carousel relative">
+<div class="amenity-track flex transition-transform duration-500 gap-6">
+<div class="amenity-slide w-full md:w-1/3 flex-shrink-0">
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl h-full">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Modern%20luxury%20gym%20with%20state%20of%20the%20art%20equipment%2C%20floor%20to%20ceiling%20windows%2C%20wooden%20flooring%2C%20mirrors%2C%20premium%20fitness%20center&width=400&height=300&seq=21&orientation=landscape" alt="Fitness Center" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+<i class="ri-heart-pulse-line text-primary text-xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Fitness Center</h3>
+<p class="text-gray-600">State-of-the-art gym with modern equipment and dedicated training areas</p>
+</div>
+</div>
+</div>
+<div class="amenity-slide w-full md:w-1/3 flex-shrink-0">
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl h-full">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Luxury%20indoor%20spa%20with%20jacuzzi%2C%20ambient%20lighting%2C%20stone%20walls%2C%20relaxation%20area%2C%20premium%20wellness%20center&width=400&height=300&seq=22&orientation=landscape" alt="Spa & Wellness" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+<i class="ri-spa-line text-primary text-xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Spa & Wellness</h3>
+<p class="text-gray-600">Rejuvenate yourself at our premium spa and wellness center</p>
+</div>
+</div>
+</div>
+<div class="amenity-slide w-full md:w-1/3 flex-shrink-0">
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl h-full">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Modern%20indoor%20games%20room%20with%20pool%20table%2C%20table%20tennis%2C%20entertainment%20area%2C%20lounge%20seating%2C%20ambient%20lighting&width=400&height=300&seq=23&orientation=landscape" alt="Indoor Games" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+<i class="ri-gamepad-line text-primary text-xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Indoor Games</h3>
+<p class="text-gray-600">Entertainment zone with pool, table tennis, and board games</p>
+</div>
+</div>
+</div>
+<div class="amenity-slide w-full md:w-1/3 flex-shrink-0">
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl h-full">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Modern%20multipurpose%20hall%20with%20stage%2C%20elegant%20decor%2C%20ambient%20lighting%2C%20event%20space%2C%20premium%20interiors&width=400&height=300&seq=24&orientation=landscape" alt="Multipurpose Hall" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+<i class="ri-community-line text-primary text-xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Multipurpose Hall</h3>
+<p class="text-gray-600">Spacious hall for community events and celebrations</p>
+</div>
+</div>
+</div>
+</div>
+<button class="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md text-gray-800 hover:bg-gray-50 transition-all z-10" onclick="moveAmenityCarousel(-1)">
+<i class="ri-arrow-left-s-line ri-lg"></i>
+</button>
+<button class="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md text-gray-800 hover:bg-gray-50 transition-all z-10" onclick="moveAmenityCarousel(1)">
+<i class="ri-arrow-right-s-line ri-lg"></i>
+</button>
+<div class="absolute -bottom-6 left-0 right-0 flex justify-center gap-2">
+<div class="amenity-dots flex gap-2"></div>
+</div>
+</div>
+</div>
+<div class="amenity-content hidden" id="community">
+<div class="amenity-carousel relative">
+<div class="amenity-track flex transition-transform duration-500 gap-6">
+<div class="amenity-slide w-full md:w-1/3 flex-shrink-0">
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl h-full">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Modern%20residential%20clubhouse%20with%20lounge%20area%2C%20contemporary%20furniture%2C%20floor%20to%20ceiling%20windows%2C%20social%20space&width=400&height=300&seq=25&orientation=landscape" alt="Clubhouse" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+<i class="ri-home-smile-line text-primary text-xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Clubhouse</h3>
+<p class="text-gray-600">Exclusive clubhouse with premium amenities and services</p>
+</div>
+</div>
+</div>
+<div class="amenity-slide w-full md:w-1/3 flex-shrink-0">
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl h-full">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Modern%20cafe%20restaurant%20in%20residential%20complex%2C%20contemporary%20design%2C%20comfortable%20seating%2C%20ambient%20lighting&width=400&height=300&seq=26&orientation=landscape" alt="Cafe" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+<i class="ri-cup-line text-primary text-xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Cafe</h3>
+<p class="text-gray-600">Cozy cafe serving fresh beverages and snacks</p>
+</div>
+</div>
+</div>
+<div class="amenity-slide w-full md:w-1/3 flex-shrink-0">
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl h-full">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Modern%20coworking%20space%20in%20residential%20complex%2C%20workstations%2C%20meeting%20rooms%2C%20contemporary%20design&width=400&height=300&seq=27&orientation=landscape" alt="Co-working Space" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+<i class="ri-computer-line text-primary text-xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Co-working Space</h3>
+<p class="text-gray-600">Professional workspace with high-speed internet</p>
+</div>
+</div>
+</div>
+<div class="amenity-slide w-full md:w-1/3 flex-shrink-0">
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl h-full">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Modern%20library%20reading%20room%20in%20residential%20complex%2C%20bookshelves%2C%20comfortable%20seating%2C%20study%20area&width=400&height=300&seq=28&orientation=landscape" alt="Library" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+<i class="ri-book-open-line text-primary text-xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Library</h3>
+<p class="text-gray-600">Quiet reading space with diverse collection of books</p>
+</div>
+</div>
+</div>
+</div>
+<button class="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md text-gray-800 hover:bg-gray-50 transition-all z-10" onclick="moveAmenityCarousel(-1)">
+<i class="ri-arrow-left-s-line ri-lg"></i>
+</button>
+<button class="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md text-gray-800 hover:bg-gray-50 transition-all z-10" onclick="moveAmenityCarousel(1)">
+<i class="ri-arrow-right-s-line ri-lg"></i>
+</button>
+<div class="absolute -bottom-6 left-0 right-0 flex justify-center gap-2">
+<div class="amenity-dots flex gap-2"></div>
+</div>
+</div>
+</div>
+<div class="amenity-content hidden" id="outdoor">
+<div class="amenity-carousel relative">
+<div class="amenity-track flex transition-transform duration-500 gap-6">
+<div class="amenity-slide w-full md:w-1/3 flex-shrink-0">
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl h-full">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Luxury%20swimming%20pool%20in%20residential%20complex%2C%20infinity%20edge%2C%20loungers%2C%20palm%20trees%2C%20evening%20ambiance&width=400&height=300&seq=29&orientation=landscape" alt="Swimming Pool" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+<i class="ri-water-flash-line text-primary text-xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Swimming Pool</h3>
+<p class="text-gray-600">Temperature-controlled pool with kids' pool area</p>
+</div>
+</div>
+</div>
+<div class="amenity-slide w-full md:w-1/3 flex-shrink-0">
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl h-full">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Modern%20children%20playground%20in%20residential%20complex%2C%20colorful%20equipment%2C%20safe%20flooring%2C%20landscaped%20surroundings&width=400&height=300&seq=30&orientation=landscape" alt="Kids' Play Area" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+<i class="ri-parent-line text-primary text-xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Kids' Play Area</h3>
+<p class="text-gray-600">Safe and engaging outdoor play area for children</p>
+</div>
+</div>
+</div>
+<div class="amenity-slide w-full md:w-1/3 flex-shrink-0">
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl h-full">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Modern%20sports%20court%20in%20residential%20complex%2C%20basketball%20court%2C%20tennis%20court%2C%20outdoor%20fitness%20equipment&width=400&height=300&seq=31&orientation=landscape" alt="Sports Court" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+<i class="ri-basketball-line text-primary text-xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Sports Court</h3>
+<p class="text-gray-600">Multi-purpose court for basketball and tennis</p>
+</div>
+</div>
+</div>
+<div class="amenity-slide w-full md:w-1/3 flex-shrink-0">
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl h-full">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Landscaped%20garden%20in%20residential%20complex%2C%20walking%20paths%2C%20seating%20areas%2C%20water%20features%2C%20evening%20lighting&width=400&height=300&seq=32&orientation=landscape" alt="Landscaped Gardens" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+<i class="ri-plant-line text-primary text-xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Landscaped Gardens</h3>
+<p class="text-gray-600">Beautiful gardens with walking trails and seating areas</p>
+</div>
+</div>
+</div>
+</div>
+<button class="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md text-gray-800 hover:bg-gray-50 transition-all z-10" onclick="moveAmenityCarousel(-1)">
+<i class="ri-arrow-left-s-line ri-lg"></i>
+</button>
+<button class="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md text-gray-800 hover:bg-gray-50 transition-all z-10" onclick="moveAmenityCarousel(1)">
+<i class="ri-arrow-right-s-line ri-lg"></i>
+</button>
+<div class="absolute -bottom-6 left-0 right-0 flex justify-center gap-2">
+<div class="amenity-dots flex gap-2"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Location Section -->
+<section class="py-16 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row gap-12">
+<div class="md:w-1/2">
+<h2 class="text-3xl font-bold mb-2 text-gray-800">Location Advantages</h2>
+<p class="text-gray-600 mb-8">Strategically located in Wakad, Pune with excellent connectivity</p>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary">
+<i class="ri-building-line ri-lg"></i>
+</div>
+<div>
+<h3 class="text-lg font-medium mb-1">Business Hubs</h3>
+<p class="text-gray-600">10 mins to Hinjewadi IT Park</p>
+<p class="text-gray-600">15 mins to Baner Tech Park</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary">
+<i class="ri-school-line ri-lg"></i>
+</div>
+<div>
+<h3 class="text-lg font-medium mb-1">Education</h3>
+<p class="text-gray-600">5 mins to Delhi Public School</p>
+<p class="text-gray-600">10 mins to Symbiosis International University</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary">
+<i class="ri-hospital-line ri-lg"></i>
+</div>
+<div>
+<h3 class="text-lg font-medium mb-1">Healthcare</h3>
+<p class="text-gray-600">7 mins to Medipoint Hospital</p>
+<p class="text-gray-600">12 mins to Aditya Birla Hospital</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary">
+<i class="ri-shopping-bag-line ri-lg"></i>
+</div>
+<div>
+<h3 class="text-lg font-medium mb-1">Shopping & Entertainment</h3>
+<p class="text-gray-600">5 mins to Westend Mall</p>
+<p class="text-gray-600">15 mins to Xion Mall</p>
+</div>
+</div>
+</div>
+</div>
+<div class="md:w-1/2">
+<div class="rounded-lg overflow-hidden shadow-lg h-full">
+<div class="h-full w-full bg-cover bg-center" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png');">
+<div class="p-6 bg-white bg-opacity-90 w-full md:w-1/2 h-full flex flex-col justify-center">
+<h3 class="text-xl font-bold mb-4">Nearby Localities</h3>
+<ul class="space-y-3">
+<li class="flex items-center gap-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-map-pin-line"></i>
+</div>
+<span>Balewadi - 4.5 km</span>
+</li>
+<li class="flex items-center gap-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-map-pin-line"></i>
+</div>
+<span>Baner - 6.2 km</span>
+</li>
+<li class="flex items-center gap-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-map-pin-line"></i>
+</div>
+<span>Hinjawadi - 3.8 km</span>
+</li>
+<li class="flex items-center gap-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-map-pin-line"></i>
+</div>
+<span>Pimple Saudagar - 5.1 km</span>
+</li>
+<li class="flex items-center gap-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-map-pin-line"></i>
+</div>
+<span>Aundh - 7.5 km</span>
+</li>
+</ul>
+<button class="mt-6 bg-primary text-white px-4 py-2 rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap">View on Google Maps</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Gallery Section -->
+<section class="py-16 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl font-bold mb-2 text-gray-800">Image & Video Gallery</h2>
+<p class="text-gray-600 mb-8">Explore the beauty of Westend Residences</p>
+<div class="mb-8">
+<div class="flex border-b border-gray-200 mb-6">
+<button class="gallery-tab active px-6 py-3 font-medium">All</button>
+<button class="gallery-tab px-6 py-3 font-medium text-gray-600">Exterior</button>
+<button class="gallery-tab px-6 py-3 font-medium text-gray-600">Interior</button>
+<button class="gallery-tab px-6 py-3 font-medium text-gray-600">Amenities</button>
+<button class="gallery-tab px-6 py-3 font-medium text-gray-600">Floor Plans</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 image-gallery">
+<div class="rounded-lg overflow-hidden shadow-md transition-all duration-300">
+<img src="https://readdy.ai/api/search-image?query=2%20BHK%20apartment%20living%20room%20with%20modern%20sofa%2C%20TV%20unit%2C%20dining%20area%2C%20large%20windows%2C%20wooden%20flooring%2C%20contemporary%20design&width=400&height=300&seq=33&orientation=landscape" alt="2 BHK Living Room" class="w-full h-64 object-cover object-top transition-transform duration-300">
+</div>
+<div class="rounded-lg overflow-hidden shadow-md transition-all duration-300">
+<img src="https://readdy.ai/api/search-image?query=2%20BHK%20apartment%20master%20bedroom%20with%20queen%20size%20bed%2C%20wardrobe%2C%20study%20table%2C%20modern%20lighting%2C%20elegant%20decor&width=400&height=300&seq=34&orientation=landscape" alt="Master Bedroom" class="w-full h-64 object-cover object-top transition-transform duration-300">
+</div>
+<div class="rounded-lg overflow-hidden shadow-md transition-all duration-300">
+<img src="https://readdy.ai/api/search-image?query=2%20BHK%20apartment%20second%20bedroom%20with%20single%20bed%2C%20wardrobe%2C%20window%2C%20modern%20decor%2C%20study%20area&width=400&height=300&seq=35&orientation=landscape" alt="Second Bedroom" class="w-full h-64 object-cover object-top transition-transform duration-300">
+</div>
+<div class="rounded-lg overflow-hidden shadow-md transition-all duration-300">
+<img src="https://readdy.ai/api/search-image?query=2%20BHK%20apartment%20modular%20kitchen%20with%20breakfast%20counter%2C%20appliances%2C%20storage%2C%20modern%20design&width=400&height=300&seq=36&orientation=landscape" alt="Kitchen" class="w-full h-64 object-cover object-top transition-transform duration-300">
+</div>
+<div class="rounded-lg overflow-hidden shadow-md transition-all duration-300">
+<img src="https://readdy.ai/api/search-image?query=2%20BHK%20apartment%20bathroom%20with%20modern%20fixtures%2C%20shower%20area%2C%20vanity%2C%20tiles%2C%20good%20lighting&width=400&height=300&seq=37&orientation=landscape" alt="Bathroom" class="w-full h-64 object-cover object-top transition-transform duration-300">
+</div>
+<div class="rounded-lg overflow-hidden shadow-md transition-all duration-300 relative group">
+<img src="https://readdy.ai/api/search-image?query=2%20BHK%20apartment%20balcony%20with%20seating%2C%20plants%2C%20city%20view%2C%20evening%20lighting&width=400&height=300&seq=38&orientation=landscape" alt="Balcony" class="w-full h-64 object-cover object-top transition-transform duration-300">
+<div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<div class="w-16 h-16 flex items-center justify-center bg-primary rounded-full text-white">
+<i class="ri-play-fill ri-2x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center">
+<button class="bg-white text-primary border border-primary px-6 py-3 rounded-button font-medium hover:bg-gray-50 transition-all whitespace-nowrap">View All Images</button>
+</div>
+</div>
+</section>
+<!-- Price Trends Section -->
+<section class="py-16 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl font-bold mb-2 text-gray-800">Price Trends</h2>
+<p class="text-gray-600 mb-8">Track property value appreciation in Wakad, Pune</p>
+<div class="bg-white rounded-lg shadow-md p-6">
+<div class="flex justify-center mb-6">
+<div class="inline-flex bg-gray-100 p-1 rounded-full">
+<button class="trend-tab active px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap bg-primary text-white" data-metric="price_sqft">Price / Sq Ft</button>
+<button class="trend-tab px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-metric="total_price">Total Price</button>
+<button class="trend-tab px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-metric="emi">EMI Estimate</button>
+</div>
+</div>
+<div id="priceChart" class="w-full h-80"></div>
+</div>
+</div>
+</section>
+<!-- Related Properties Section -->
+<section class="py-16 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl font-bold mb-2 text-gray-800">Related Properties</h2>
+<p class="text-gray-600 mb-8">Explore other premium properties in Pune</p>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
+<div class="h-48 overflow-hidden relative">
+<div class="property-carousel flex transition-transform duration-300">
+<img src="https://readdy.ai/api/search-image?query=Modern%20residential%20tower%20exterior%20view%2C%20contemporary%20architecture%2C%20glass%20facade%2C%20balconies%2C%20landscaped%20entrance%2C%20urban%20setting&width=400&height=300&seq=14&orientation=landscape" alt="Eastwood Towers Exterior" class="w-full h-48 object-cover object-top flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=Modern%20apartment%20living%20room%20interior%2C%20luxury%20design%2C%20floor%20to%20ceiling%20windows%2C%20contemporary%20furniture&width=400&height=300&seq=39&orientation=landscape" alt="Eastwood Towers Interior" class="w-full h-48 object-cover object-top flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=Modern%20residential%20amenities%2C%20swimming%20pool%2C%20landscaped%20gardens%2C%20clubhouse&width=400&height=300&seq=40&orientation=landscape" alt="Eastwood Towers Amenities" class="w-full h-48 object-cover object-top flex-shrink-0">
+</div>
+<button class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white bg-opacity-80 rounded-full text-gray-800 hover:bg-opacity-100 transition-all property-prev">
+<i class="ri-arrow-left-s-line"></i>
+</button>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white bg-opacity-80 rounded-full text-gray-800 hover:bg-opacity-100 transition-all property-next">
+<i class="ri-arrow-right-s-line"></i>
+</button>
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-white bg-opacity-90 property-dot active"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-white bg-opacity-50 property-dot"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-white bg-opacity-50 property-dot"></div>
+</div>
+</div>
+<div class="p-4">
+<div class="text-sm text-gray-500 mb-1">Eastwood Group / Apartment / Premium Tower A</div>
+<h3 class="text-lg font-bold mb-2">Eastwood Towers</h3>
+<div class="flex items-center gap-2 mb-3">
+<div class="w-4 h-4 flex items-center justify-center text-primary">
+<i class="ri-map-pin-line"></i>
+</div>
+<p class="text-gray-600 text-sm">Baner, Pune</p>
+</div>
+<div class="grid grid-cols-2 gap-2 mb-3 text-sm">
+<div>
+<span class="text-gray-500">Built-up Area</span>
+<p class="font-medium">1,850 - 2,400 sq ft</p>
+</div>
+<div>
+<span class="text-gray-500">Configuration</span>
+<p class="font-medium">3 & 4 BHK</p>
+</div>
+<div>
+<span class="text-gray-500">Starting Price</span>
+<p class="text-primary font-bold">₹1.2 Cr</p>
+</div>
+<div>
+<span class="text-gray-500">Possession</span>
+<p class="font-medium">Ready to Move</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs">RERA Approved</span>
+<span class="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs">Club House</span>
+<span class="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs">Swimming Pool</span>
+</div>
+<button class="w-full bg-white text-primary border border-primary px-4 py-2 rounded-button font-medium hover:bg-gray-50 transition-all whitespace-nowrap text-sm">View Details</button>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Luxury%20residential%20complex%2C%20contemporary%20architecture%2C%20swimming%20pool%2C%20landscaped%20gardens%2C%20modern%20facade%2C%20premium%20apartments&width=400&height=300&seq=15&orientation=landscape" alt="Green Valley" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Green Valley</h3>
+<p class="text-gray-600 mb-4">Hinjawadi, Pune</p>
+<div class="flex justify-between items-center mb-4">
+<span class="text-gray-500">Starting at</span>
+<span class="text-primary font-bold">₹85 Lakh</span>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">2 & 3 BHK</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Under Construction</span>
+</div>
+<button class="w-full bg-white text-primary border border-primary px-4 py-2 rounded-button font-medium hover:bg-gray-50 transition-all whitespace-nowrap">View Details</button>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Premium%20residential%20project%2C%20modern%20architecture%2C%20glass%20facade%2C%20landscaped%20gardens%2C%20luxury%20apartments%2C%20urban%20setting&width=400&height=300&seq=16&orientation=landscape" alt="Sapphire Heights" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Sapphire Heights</h3>
+<p class="text-gray-600 mb-4">Balewadi, Pune</p>
+<div class="flex justify-between items-center mb-4">
+<span class="text-gray-500">Starting at</span>
+<span class="text-primary font-bold">₹1.5 Cr</span>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">3 & 4 BHK</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Ready to Move</span>
+</div>
+<button class="w-full bg-white text-primary border border-primary px-4 py-2 rounded-button font-medium hover:bg-gray-50 transition-all whitespace-nowrap">View Details</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-16 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="flex flex-col md:flex-row">
+<div class="md:w-1/2 p-8 md:p-12">
+<h2 class="text-3xl font-bold mb-2 text-gray-800">Interested in Westend Residences?</h2>
+<p class="text-gray-600 mb-8">Fill out the form and our sales team will get in touch with you</p>
+<form>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+<input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded focus:border-primary" placeholder="John Smith">
+</div>
+<div>
+<label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+<input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:border-primary" placeholder="john@example.com">
+</div>
+<div>
+<label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+<input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded focus:border-primary" placeholder="+91 98765 43210">
+</div>
+<div>
+<label for="config" class="block text-sm font-medium text-gray-700 mb-1">Interested In</label>
+<div class="relative">
+<select id="config" class="w-full px-4 py-2 border border-gray-300 rounded focus:border-primary appearance-none pr-8">
+<option>2 BHK</option>
+<option selected>3 BHK</option>
+<option>4 BHK</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+<div class="w-4 h-4 flex items-center justify-center text-gray-500">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message (Optional)</label>
+<textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:border-primary" placeholder="I'm interested in knowing more about..."></textarea>
+</div>
+<div class="flex items-start mb-6">
+<input type="checkbox" id="consent" class="custom-checkbox mr-2">
+<label for="consent" class="text-sm text-gray-600">I agree to receive communications about Westend Residences and other properties from the developer.</label>
+</div>
+<button type="submit" class="bg-primary text-white px-6 py-3 rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap">Submit Enquiry</button>
+</form>
+</div>
+<div class="md:w-1/2 bg-gray-100 p-8 md:p-12">
+<h3 class="text-xl font-bold mb-6">Contact Information</h3>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary">
+<i class="ri-map-pin-line ri-lg"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Site Address</h4>
+<p class="text-gray-600">Westend Residences, Near Wakad Chowk, Wakad, Pune - 411057, Maharashtra, India</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary">
+<i class="ri-phone-line ri-lg"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Sales Contact</h4>
+<p class="text-gray-600">+91 98765 43210</p>
+<p class="text-gray-600">sales@westendresidences.com</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary">
+<i class="ri-time-line ri-lg"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Sales Office Hours</h4>
+<p class="text-gray-600">Monday - Saturday: 10:00 AM - 7:00 PM</p>
+<p class="text-gray-600">Sunday: 11:00 AM - 5:00 PM</p>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<h3 class="text-xl font-bold mb-4">Connect With Us</h3>
+<div class="flex gap-4">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-white rounded-full text-gray-600 hover:text-primary transition-colors">
+<i class="ri-facebook-fill ri-lg"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-white rounded-full text-gray-600 hover:text-primary transition-colors">
+<i class="ri-instagram-line ri-lg"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-white rounded-full text-gray-600 hover:text-primary transition-colors">
+<i class="ri-youtube-line ri-lg"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-white rounded-full text-gray-600 hover:text-primary transition-colors">
+<i class="ri-linkedin-fill ri-lg"></i>
+</a>
+</div>
+</div>
+<div class="mt-8">
+<button class="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-whatsapp-line"></i>
+</div>
+<span>Chat on WhatsApp</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<div class="font-['Pacifico'] text-primary text-3xl mb-4">logo</div>
+<p class="text-gray-400 mb-6">Westend Residences - Premium residential project in Wakad, Pune offering luxurious living spaces with world-class amenities.</p>
+<div class="flex gap-4">
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-facebook-fill"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-instagram-line"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-linkedin-fill"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-youtube-line"></i>
+</div>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4">Quick Links</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Projects</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Floor Plans</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Gallery</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4">Projects</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Westend Residences</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Eastwood Towers</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Green Valley</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Sapphire Heights</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Urban Square</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4">Contact Us</h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<div class="w-5 h-5 flex items-center justify-center text-gray-400 mt-1">
+<i class="ri-map-pin-line"></i>
+</div>
+<span class="text-gray-400">Westend Residences, Near Wakad Chowk, Wakad, Pune - 411057</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-5 h-5 flex items-center justify-center text-gray-400">
+<i class="ri-phone-line"></i>
+</div>
+<span class="text-gray-400">+91 98765 43210</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-5 h-5 flex items-center justify-center text-gray-400">
+<i class="ri-mail-line"></i>
+</div>
+<span class="text-gray-400">info@westendresidences.com</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-gray-700">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Westend Residences. All rights reserved.</p>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 flex items-center justify-center text-gray-400">
+<i class="ri-visa-fill"></i>
+</div>
+<div class="w-6 h-6 flex items-center justify-center text-gray-400">
+<i class="ri-mastercard-fill"></i>
+</div>
+<div class="w-6 h-6 flex items-center justify-center text-gray-400">
+<i class="ri-paypal-fill"></i>
+</div>
+</div>
+<div class="text-gray-400 text-sm">
+<a href="#" class="hover:text-white">Privacy Policy</a> |
+<a href="#" class="hover:text-white">Terms of Service</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+let currentSlide = 0;
+const carousel = document.querySelector('.carousel-items');
+
+// Property carousel functionality
+const propertyCarousels = document.querySelectorAll('.property-carousel');
+propertyCarousels.forEach((carousel, carouselIndex) => {
+let currentPropertySlide = 0;
+const slides = carousel.children;
+const totalSlides = slides.length;
+const dots = carousel.parentElement.querySelectorAll('.property-dot');
+const prevBtn = carousel.parentElement.querySelector('.property-prev');
+const nextBtn = carousel.parentElement.querySelector('.property-next');
+
+function updatePropertyCarousel() {
+carousel.style.transform = `translateX(-${currentPropertySlide * 100}%)`;
+dots.forEach((dot, index) => {
+dot.classList.toggle('bg-opacity-90', index === currentPropertySlide);
+dot.classList.toggle('bg-opacity-50', index !== currentPropertySlide);
+});
+}
+
+function movePropertyCarousel(direction) {
+currentPropertySlide = (currentPropertySlide + direction + totalSlides) % totalSlides;
+updatePropertyCarousel();
+}
+
+prevBtn.addEventListener('click', () => movePropertyCarousel(-1));
+nextBtn.addEventListener('click', () => movePropertyCarousel(1));
+
+dots.forEach((dot, index) => {
+dot.addEventListener('click', () => {
+currentPropertySlide = index;
+updatePropertyCarousel();
+});
+});
+
+setInterval(() => {
+movePropertyCarousel(1);
+}, 5000);
+});
+// Amenities Section
+const amenityTabs = document.querySelectorAll('.amenity-tab');
+const amenityContents = document.querySelectorAll('.amenity-content');
+let currentAmenitySlide = 0;
+let autoScrollInterval;
+amenityTabs.forEach((tab, index) => {
+tab.addEventListener('click', () => {
+amenityTabs.forEach(t => {
+t.classList.remove('active', 'bg-primary', 'text-white');
+});
+amenityContents.forEach(c => c.classList.add('hidden'));
+tab.classList.add('active', 'bg-primary', 'text-white');
+amenityContents[index].classList.remove('hidden');
+currentAmenitySlide = 0;
+updateAmenityCarousel();
+});
+});
+function updateAmenityCarousel() {
+const activeContent = document.querySelector('.amenity-content:not(.hidden)');
+const track = activeContent.querySelector('.amenity-track');
+const slides = activeContent.querySelectorAll('.amenity-slide');
+const dotsContainer = activeContent.querySelector('.amenity-dots');
+if (!dotsContainer.children.length) {
+const totalDots = Math.max(0, slides.length - 2);
+for (let i = 0; i <= totalDots; i++) {
+const dot = document.createElement('button');
+dot.className = 'w-2 h-2 rounded-full transition-all duration-300';
+dot.addEventListener('click', () => {
+currentAmenitySlide = i;
+updateAmenityCarousel();
+});
+dotsContainer.appendChild(dot);
+}
+}
+const dots = dotsContainer.children;
+for (let i = 0; i < dots.length; i++) {
+if (i === currentAmenitySlide) {
+dots[i].classList.add('bg-primary');
+dots[i].classList.remove('bg-gray-300');
+} else {
+dots[i].classList.remove('bg-primary');
+dots[i].classList.add('bg-gray-300');
+}
+}
+track.style.transform = `translateX(-${currentAmenitySlide * 33.33}%)`;
+}
+window.moveAmenityCarousel = function(direction) {
+const activeContent = document.querySelector('.amenity-content:not(.hidden)');
+const slides = activeContent.querySelectorAll('.amenity-slide');
+const maxSlides = Math.max(0, slides.length - 3);
+if (direction > 0 && currentAmenitySlide >= maxSlides) {
+currentAmenitySlide = 0;
+} else if (direction < 0 && currentAmenitySlide <= 0) {
+currentAmenitySlide = maxSlides;
+} else {
+currentAmenitySlide = Math.min(Math.max(0, currentAmenitySlide + direction), maxSlides);
+}
+const track = activeContent.querySelector('.amenity-track');
+track.style.transition = 'transform 0.5s ease-in-out';
+updateAmenityCarousel();
+};
+function startAutoScroll() {
+stopAutoScroll();
+autoScrollInterval = setInterval(() => {
+const activeContent = document.querySelector('.amenity-content:not(.hidden)');
+const slides = activeContent.querySelectorAll('.amenity-slide');
+const maxSlides = Math.max(0, slides.length - 3);
+if (currentAmenitySlide >= maxSlides) {
+currentAmenitySlide = 0;
+} else {
+currentAmenitySlide++;
+}
+updateAmenityCarousel();
+}, 5000);
+}
+function stopAutoScroll() {
+if (autoScrollInterval) {
+clearInterval(autoScrollInterval);
+}
+}
+startAutoScroll();
+const carouselContainers = document.querySelectorAll('.amenity-carousel');
+carouselContainers.forEach(container => {
+container.addEventListener('mouseenter', stopAutoScroll);
+container.addEventListener('mouseleave', startAutoScroll);
+});
+const slides = carousel.children;
+const dots = document.querySelectorAll('.carousel-dot');
+const totalSlides = slides.length;
+function updateCarousel() {
+carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+dots.forEach((dot, index) => {
+dot.classList.toggle('active', index === currentSlide);
+if (index === currentSlide) {
+dot.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+} else {
+dot.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+}
+});
+}
+window.moveCarousel = function(direction) {
+currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+updateCarousel();
+};
+dots.forEach((dot, index) => {
+dot.addEventListener('click', () => {
+currentSlide = index;
+updateCarousel();
+});
+});
+setInterval(() => {
+moveCarousel(1);
+}, 5000);
+// Price Trends Chart
+var chartDom = document.getElementById('priceChart');
+var myChart = echarts.init(chartDom);
+const chartData = {
+price_sqft: {
+name: 'Price (₹/sq ft)',
+formatter: '₹{value}',
+series: [
+{
+name: 'Westend Area',
+data: [7200, 7350, 7500, 7650, 7800, 8000, 8150, 8300, 8500]
+},
+{
+name: 'Pune Average',
+data: [6800, 6900, 7000, 7100, 7200, 7300, 7400, 7500, 7600]
+}
+]
+},
+total_price: {
+name: 'Total Price (₹ Lakhs)',
+formatter: '₹{value}L',
+series: [
+{
+name: 'Westend Area',
+data: [90, 92, 94, 96, 98, 100, 102, 104, 106]
+},
+{
+name: 'Pune Average',
+data: [85, 86, 87, 88, 89, 90, 91, 92, 93]
+}
+]
+},
+emi: {
+name: 'EMI Estimate (₹)',
+formatter: '₹{value}K',
+series: [
+{
+name: 'Westend Area',
+data: [65, 66, 67, 68, 69, 70, 71, 72, 73]
+},
+{
+name: 'Pune Average',
+data: [60, 61, 62, 63, 64, 65, 66, 67, 68]
+}
+]
+}
+};
+function updateChart(metric) {
+const data = chartData[metric];
+const option = {
+animation: false,
+tooltip: {
+trigger: 'axis',
+backgroundColor: 'rgba(255, 255, 255, 0.8)',
+textStyle: {
+color: '#1f2937'
+}
+},
+legend: {
+data: ['Westend Area', 'Pune Average'],
+textStyle: {
+color: '#1f2937'
+}
+},
+grid: {
+left: '3%',
+right: '4%',
+bottom: '3%',
+containLabel: true
+},
+xAxis: {
+type: 'category',
+boundaryGap: false,
+data: ['Apr 2023', 'Jul 2023', 'Oct 2023', 'Jan 2024', 'Apr 2024', 'Jul 2024', 'Oct 2024', 'Jan 2025', 'Apr 2025'],
+axisLine: {
+lineStyle: {
+color: '#d1d5db'
+}
+},
+axisLabel: {
+color: '#1f2937'
+}
+},
+yAxis: {
+type: 'value',
+name: data.name,
+nameTextStyle: {
+color: '#1f2937'
+},
+axisLine: {
+lineStyle: {
+color: '#d1d5db'
+}
+},
+axisLabel: {
+color: '#1f2937',
+formatter: data.formatter
+},
+splitLine: {
+lineStyle: {
+color: '#e5e7eb'
+}
+}
+},
+series: data.series.map((item, index) => ({
+name: item.name,
+type: 'line',
+smooth: true,
+lineStyle: {
+width: 3,
+color: index === 0 ? 'rgba(87, 181, 231, 1)' : 'rgba(141, 211, 199, 1)'
+},
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{
+offset: 0,
+color: index === 0 ? 'rgba(87, 181, 231, 0.3)' : 'rgba(141, 211, 199, 0.3)'
+},
+{
+offset: 1,
+color: index === 0 ? 'rgba(87, 181, 231, 0.1)' : 'rgba(141, 211, 199, 0.1)'
+}
+])
+},
+symbol: 'none',
+data: item.data
+}))
+};
+myChart.setOption(option);
+}
+updateChart('price_sqft');
+const trendTabs = document.querySelectorAll('.trend-tab');
+trendTabs.forEach(tab => {
+tab.addEventListener('click', function() {
+trendTabs.forEach(t => {
+t.classList.remove('active', 'bg-primary', 'text-white');
+});
+this.classList.add('active', 'bg-primary', 'text-white');
+updateChart(this.dataset.metric);
+});
+});
+window.addEventListener('resize', function() {
+myChart.resize();
+});
+// Gallery tabs
+const galleryTabs = document.querySelectorAll('.gallery-tab');
+galleryTabs.forEach(tab => {
+tab.addEventListener('click', function() {
+galleryTabs.forEach(t => t.classList.remove('active'));
+this.classList.add('active');
+});
+});
+});
+</script>
+</body>
+</html>

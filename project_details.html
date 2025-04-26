@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orange Grove Residences | Luxury Real Estate Project</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#FF6B00',secondary:'#FFB168'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .custom-checkbox {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .custom-checkbox.checked {
+            background-color: #FF6B00;
+            border-color: #FF6B00;
+        }
+        .custom-checkbox.checked::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 2px;
+            width: 6px;
+            height: 12px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .custom-radio {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .custom-radio.checked {
+            border-color: #FF6B00;
+        }
+        .custom-radio.checked::after {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #FF6B00;
+        }
+        .custom-switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 24px;
+            cursor: pointer;
+        }
+        .custom-switch-track {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ddd;
+            border-radius: 24px;
+            transition: 0.3s;
+        }
+        .custom-switch.checked .custom-switch-track {
+            background-color: #FF6B00;
+        }
+        .custom-switch-thumb {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .custom-switch.checked .custom-switch-thumb {
+            transform: translateX(24px);
+        }
+        .custom-range {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: #ddd;
+            border-radius: 3px;
+            outline: none;
+        }
+        .custom-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #FF6B00;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .custom-range::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #FF6B00;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .hero-gradient {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 40%, rgba(255, 255, 255, 0.1) 100%);
+        }
+        .amenity-tab.active {
+            background-color: #FF6B00;
+            color: white;
+        }
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .gallery-tab.active {
+            color: #FF6B00;
+            border-bottom: 2px solid #FF6B00;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <h1 class="text-3xl font-['Pacifico'] text-primary">logo</h1>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#overview" class="text-gray-700 hover:text-primary font-medium">Overview</a>
+                <a href="#properties" class="text-gray-700 hover:text-primary font-medium">Properties</a>
+                <a href="#amenities" class="text-gray-700 hover:text-primary font-medium">Amenities</a>
+                <a href="#gallery" class="text-gray-700 hover:text-primary font-medium">Gallery</a>
+                <a href="#pricing" class="text-gray-700 hover:text-primary font-medium">Pricing</a>
+                <a href="#location" class="text-gray-700 hover:text-primary font-medium">Location</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button class="bg-primary text-white px-6 py-2 font-medium !rounded-button whitespace-nowrap flex items-center">
+                    <span class="w-5 h-5 flex items-center justify-center mr-2"><i class="ri-download-line"></i></span>
+                    Download Brochure
+                </button>
+                <div class="md:hidden w-10 h-10 flex items-center justify-center cursor-pointer" id="mobileMenuBtn">
+                    <i class="ri-menu-line ri-xl"></i>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-white absolute top-full left-0 right-0 shadow-lg">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#overview" class="text-gray-700 hover:text-primary font-medium py-2">Overview</a>
+                <a href="#properties" class="text-gray-700 hover:text-primary font-medium py-2">Properties</a>
+                <a href="#amenities" class="text-gray-700 hover:text-primary font-medium py-2">Amenities</a>
+                <a href="#gallery" class="text-gray-700 hover:text-primary font-medium py-2">Gallery</a>
+                <a href="#pricing" class="text-gray-700 hover:text-primary font-medium py-2">Pricing</a>
+                <a href="#location" class="text-gray-700 hover:text-primary font-medium py-2">Location</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="w-full relative pt-20 overflow-hidden" style="background-image: url('https://readdy.ai/api/search-image?query=modern%20luxury%20real%20estate%20project%20with%20orange%20accents%2C%20beautiful%20architecture%2C%20swimming%20pool%2C%20and%20landscaped%20gardens%2C%20high-end%20residential%20complex%20with%20palm%20trees%2C%20sunset%20lighting%2C%20professional%20real%20estate%20photography&width=1920&height=800&seq=1&orientation=landscape'); background-size: cover; background-position: center; height: 700px;">
+        <div class="absolute inset-0 hero-gradient"></div>
+        <div class="container mx-auto px-4 h-full flex items-center relative z-10">
+            <div class="w-full lg:w-1/2">
+                <div class="bg-white/80 p-8 rounded-lg backdrop-blur-sm">
+                    <h1 class="text-5xl font-bold text-gray-900 mb-4">Orange Grove <span class="text-primary">Residences</span></h1>
+                    <p class="text-xl text-gray-700 mb-6">Luxury Living Redefined in the Heart of the City</p>
+                    <div class="flex flex-wrap gap-6 mb-8">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3">
+                                <i class="ri-building-line text-primary"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Project Type</p>
+                                <p class="font-medium">Residential</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3">
+                                <i class="ri-government-line text-primary"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">RERA ID</p>
+                                <p class="font-medium">RERA/HYD/2025/1234</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3">
+                                <i class="ri-calendar-check-line text-primary"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Possession Date</p>
+                                <p class="font-medium">December 2026</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-primary text-white px-6 py-3 font-medium !rounded-button whitespace-nowrap">
+                            Book a Site Visit
+                        </button>
+                        <button class="border-2 border-primary text-primary px-6 py-3 font-medium !rounded-button whitespace-nowrap">
+                            Get Price Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section id="overview" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Project Overview</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <h3 class="text-2xl font-semibold mb-6">About Orange Grove Residences</h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Orange Grove Residences is a premium residential project spanning over 25 acres of lush greenery, offering a perfect blend of luxury, comfort, and convenience. Designed by award-winning architects, this masterpiece features spacious apartments, villas, and penthouses with world-class amenities.
+                    </p>
+                    <p class="text-gray-700 mb-8 leading-relaxed">
+                        Located in the most sought-after neighborhood, Orange Grove Residences provides easy access to major business districts, educational institutions, healthcare facilities, and entertainment hubs. The project is built with sustainable materials and incorporates eco-friendly practices, making it an ideal choice for environmentally conscious homebuyers.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3 mt-1">
+                                <i class="ri-home-4-line text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900 mb-1">Total Units</h4>
+                                <p class="text-gray-600">450 Residential Units</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3 mt-1">
+                                <i class="ri-landscape-line text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900 mb-1">Total Area</h4>
+                                <p class="text-gray-600">25 Acres</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3 mt-1">
+                                <i class="ri-building-4-line text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900 mb-1">Towers</h4>
+                                <p class="text-gray-600">8 Residential Towers</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3 mt-1">
+                                <i class="ri-building-line text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900 mb-1">Project Status</h4>
+                                <p class="text-gray-600">Under Construction</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="relative h-full rounded-lg overflow-hidden shadow-xl">
+                        <img src="https://readdy.ai/api/search-image?query=luxury%20real%20estate%20project%20overview%2C%20architectural%20masterplan%2C%203D%20model%20of%20residential%20complex%20with%20orange-themed%20buildings%2C%20swimming%20pools%2C%20and%20landscaped%20gardens%2C%20professional%20real%20estate%20visualization&width=600&height=500&seq=2&orientation=landscape" alt="Project Masterplan" class="w-full h-full object-cover object-top">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+                            <h3 class="text-white text-xl font-semibold mb-2">Project Masterplan</h3>
+                            <p class="text-white/80">A thoughtfully designed community with premium amenities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Property Types -->
+    <section id="properties" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Property Types</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Discover a variety of living spaces designed to suit different lifestyles and preferences.</p>
+                <div class="w-20 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+            
+            <div class="relative">
+                <div class="flex overflow-x-auto pb-8 -mx-4 px-4 space-x-6 scroll-smooth" id="propertyCarousel">
+                    <!-- Property 1 -->
+                    <div class="property-card flex-shrink-0 w-full sm:w-80 bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=modern%20luxury%20apartment%20interior%20with%20orange%20accents%2C%20spacious%20living%20room%20with%20large%20windows%2C%20contemporary%20furniture%2C%20high-end%20finishes%2C%20professional%20real%20estate%20photography&width=400&height=250&seq=3&orientation=landscape" alt="Luxury Apartment" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-xl font-semibold text-gray-900">Luxury Apartments</h3>
+                                <div class="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">From $450K</div>
+                            </div>
+                            <p class="text-gray-600 mb-4">Spacious 1, 2 & 3 BHK apartments with premium finishes and modern amenities.</p>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-5">
+                                <div class="flex items-center">
+                                    <i class="ri-ruler-line mr-1"></i>
+                                    <span>650-1850 sq.ft.</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="ri-home-4-line mr-1"></i>
+                                    <span>1/2/3 BHK</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-white border border-primary text-primary font-medium py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap">View Details</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Property 2 -->
+                    <div class="property-card flex-shrink-0 w-full sm:w-80 bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=luxury%20modern%20villa%20with%20orange%20accents%2C%20beautiful%20exterior%20with%20swimming%20pool%2C%20contemporary%20architecture%2C%20landscaped%20garden%2C%20professional%20real%20estate%20photography&width=400&height=250&seq=4&orientation=landscape" alt="Premium Villa" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-xl font-semibold text-gray-900">Premium Villas</h3>
+                                <div class="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">From $1.2M</div>
+                            </div>
+                            <p class="text-gray-600 mb-4">Exclusive 3 & 4 BHK villas with private gardens and premium amenities.</p>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-5">
+                                <div class="flex items-center">
+                                    <i class="ri-ruler-line mr-1"></i>
+                                    <span>2500-4000 sq.ft.</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="ri-home-4-line mr-1"></i>
+                                    <span>3/4 BHK</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-white border border-primary text-primary font-medium py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap">View Details</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Property 3 -->
+                    <div class="property-card flex-shrink-0 w-full sm:w-80 bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=luxury%20penthouse%20with%20orange%20accents%2C%20spacious%20terrace%20with%20city%20views%2C%20modern%20interior%2C%20high%20ceilings%2C%20premium%20finishes%2C%20professional%20real%20estate%20photography&width=400&height=250&seq=5&orientation=landscape" alt="Penthouse" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-xl font-semibold text-gray-900">Penthouses</h3>
+                                <div class="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">From $1.8M</div>
+                            </div>
+                            <p class="text-gray-600 mb-4">Luxurious 4 & 5 BHK penthouses with private terraces and panoramic views.</p>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-5">
+                                <div class="flex items-center">
+                                    <i class="ri-ruler-line mr-1"></i>
+                                    <span>3500-5500 sq.ft.</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="ri-home-4-line mr-1"></i>
+                                    <span>4/5 BHK</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-white border border-primary text-primary font-medium py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap">View Details</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Property 4 -->
+                    <div class="property-card flex-shrink-0 w-full sm:w-80 bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=modern%20studio%20apartment%20with%20orange%20accents%2C%20compact%20living%20space%2C%20contemporary%20furniture%2C%20large%20windows%2C%20professional%20real%20estate%20photography&width=400&height=250&seq=6&orientation=landscape" alt="Studio Apartment" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-xl font-semibold text-gray-900">Studio Apartments</h3>
+                                <div class="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">From $280K</div>
+                            </div>
+                            <p class="text-gray-600 mb-4">Compact and stylish studio apartments perfect for young professionals.</p>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-5">
+                                <div class="flex items-center">
+                                    <i class="ri-ruler-line mr-1"></i>
+                                    <span>450-550 sq.ft.</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="ri-home-4-line mr-1"></i>
+                                    <span>Studio</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-white border border-primary text-primary font-medium py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap">View Details</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Property 5 -->
+                    <div class="property-card flex-shrink-0 w-full sm:w-80 bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=modern%20duplex%20apartment%20with%20orange%20accents%2C%20two-story%20living%20space%2C%20spiral%20staircase%2C%20contemporary%20furniture%2C%20large%20windows%2C%20professional%20real%20estate%20photography&width=400&height=250&seq=7&orientation=landscape" alt="Duplex" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-xl font-semibold text-gray-900">Duplexes</h3>
+                                <div class="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">From $850K</div>
+                            </div>
+                            <p class="text-gray-600 mb-4">Elegant 3 & 4 BHK duplex apartments with double-height living spaces.</p>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-5">
+                                <div class="flex items-center">
+                                    <i class="ri-ruler-line mr-1"></i>
+                                    <span>1800-2800 sq.ft.</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="ri-home-4-line mr-1"></i>
+                                    <span>3/4 BHK</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-white border border-primary text-primary font-medium py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap">View Details</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Property 6 -->
+                    <div class="property-card flex-shrink-0 w-full sm:w-80 bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=commercial%20space%20with%20orange%20accents%2C%20modern%20office%20interior%2C%20glass%20partitions%2C%20reception%20area%2C%20professional%20real%20estate%20photography&width=400&height=250&seq=8&orientation=landscape" alt="Commercial Space" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-xl font-semibold text-gray-900">Commercial Spaces</h3>
+                                <div class="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">From $320K</div>
+                            </div>
+                            <p class="text-gray-600 mb-4">Premium retail and office spaces designed for modern businesses.</p>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-5">
+                                <div class="flex items-center">
+                                    <i class="ri-ruler-line mr-1"></i>
+                                    <span>500-2000 sq.ft.</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="ri-store-2-line mr-1"></i>
+                                    <span>Retail/Office</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-white border border-primary text-primary font-medium py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation Arrows -->
+                <button class="absolute top-1/2 left-0 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center z-10 focus:outline-none" id="prevProperty">
+                    <i class="ri-arrow-left-s-line text-primary ri-lg"></i>
+                </button>
+                <button class="absolute top-1/2 right-0 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center z-10 focus:outline-none" id="nextProperty">
+                    <i class="ri-arrow-right-s-line text-primary ri-lg"></i>
+                </button>
+            </div>
+            
+            <!-- Dots Indicator -->
+            <div class="flex justify-center space-x-2 mt-8" id="propertyDots">
+                <button class="w-3 h-3 rounded-full bg-primary" data-index="0"></button>
+                <button class="w-3 h-3 rounded-full bg-gray-300" data-index="1"></button>
+                <button class="w-3 h-3 rounded-full bg-gray-300" data-index="2"></button>
+                <button class="w-3 h-3 rounded-full bg-gray-300" data-index="3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section id="amenities" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">World-Class Amenities</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Experience a lifestyle of luxury with our thoughtfully curated amenities designed for your comfort and convenience.</p>
+                <div class="w-20 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+            
+            <!-- Amenities Tabs -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="amenity-tab active px-6 py-3 rounded-full bg-primary text-white font-medium whitespace-nowrap" data-tab="security">
+                    <i class="ri-shield-check-line mr-2"></i>Security
+                </button>
+                <button class="amenity-tab px-6 py-3 rounded-full bg-gray-100 text-gray-700 font-medium whitespace-nowrap" data-tab="fitness">
+                    <i class="ri-heart-pulse-line mr-2"></i>Fitness & Wellness
+                </button>
+                <button class="amenity-tab px-6 py-3 rounded-full bg-gray-100 text-gray-700 font-medium whitespace-nowrap" data-tab="sports">
+                    <i class="ri-basketball-line mr-2"></i>Sports & Recreation
+                </button>
+                <button class="amenity-tab px-6 py-3 rounded-full bg-gray-100 text-gray-700 font-medium whitespace-nowrap" data-tab="utility">
+                    <i class="ri-service-line mr-2"></i>Utility & Services
+                </button>
+            </div>
+            
+            <!-- Amenities Content -->
+            <div class="amenity-content" id="securityContent">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-shield-user-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">24/7 Security Personnel</h3>
+                        <p class="text-gray-600">Round-the-clock security staff ensuring your safety with regular patrols and monitoring.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-cctv-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">CCTV Surveillance</h3>
+                        <p class="text-gray-600">Advanced CCTV system covering all common areas, entrances, and perimeters for enhanced security.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-door-lock-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Access Control System</h3>
+                        <p class="text-gray-600">Secure access control with digital key cards and biometric authentication for residents.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-alarm-warning-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Fire Safety Systems</h3>
+                        <p class="text-gray-600">Comprehensive fire detection and suppression systems with regular safety drills.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-parking-box-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Secure Parking</h3>
+                        <p class="text-gray-600">Dedicated parking spaces with surveillance and controlled access for residents and visitors.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-home-smile-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Intercom Facility</h3>
+                        <p class="text-gray-600">Video intercom system connecting all residences to the main entrance and security desk.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="amenity-content hidden" id="fitnessContent">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-fitness-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">State-of-the-art Gym</h3>
+                        <p class="text-gray-600">Fully equipped fitness center with cardio machines, strength training equipment, and personal trainers.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-mental-health-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Yoga & Meditation Center</h3>
+                        <p class="text-gray-600">Dedicated space for yoga and meditation with regular classes conducted by certified instructors.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-spa-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Spa & Sauna</h3>
+                        <p class="text-gray-600">Luxurious spa with massage rooms, steam rooms, and sauna facilities for ultimate relaxation.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-walk-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Jogging Track</h3>
+                        <p class="text-gray-600">Landscaped jogging track winding through the property for your daily fitness routine.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-medicine-bottle-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Health Clinic</h3>
+                        <p class="text-gray-600">On-site health clinic with regular doctor visits for basic healthcare needs and emergencies.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-psychotherapy-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Aerobics Studio</h3>
+                        <p class="text-gray-600">Dedicated studio for aerobics, zumba, and other group fitness activities with professional instructors.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="amenity-content hidden" id="sportsContent">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-swimming-pool-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Swimming Pools</h3>
+                        <p class="text-gray-600">Temperature-controlled infinity pool, kids' pool, and lap pool with poolside lounging areas.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-tennis-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Tennis Courts</h3>
+                        <p class="text-gray-600">Professional-grade tennis courts with night lighting and coaching facilities available.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-basketball-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Basketball Court</h3>
+                        <p class="text-gray-600">Full-sized basketball court with high-quality flooring and professional equipment.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-gamepad-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Indoor Games Room</h3>
+                        <p class="text-gray-600">Equipped with table tennis, billiards, foosball, and board games for all age groups.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-football-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Mini Football Field</h3>
+                        <p class="text-gray-600">Artificial turf mini football field for friendly matches and recreational play.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-parent-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Children's Play Area</h3>
+                        <p class="text-gray-600">Safe and engaging play areas for children with modern equipment and soft flooring.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="amenity-content hidden" id="utilityContent">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-battery-charge-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">24/7 Power Backup</h3>
+                        <p class="text-gray-600">Uninterrupted power supply with 100% backup for all residential units and common areas.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-water-flash-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Water Purification System</h3>
+                        <p class="text-gray-600">Centralized water purification system providing clean, potable water to all residences.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-wifi-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">High-Speed Internet</h3>
+                        <p class="text-gray-600">Fiber-optic internet connectivity available throughout the complex with Wi-Fi in common areas.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-shirt-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Laundry Services</h3>
+                        <p class="text-gray-600">Professional laundry and dry cleaning services available for residents' convenience.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-community-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Clubhouse</h3>
+                        <p class="text-gray-600">Exclusive clubhouse with multi-purpose hall, meeting rooms, and entertainment zones.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                            <i class="ri-restaurant-line text-primary ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Cafeteria & Restaurant</h3>
+                        <p class="text-gray-600">On-site dining options serving a variety of cuisines with indoor and outdoor seating.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Project Gallery</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explore the beauty and elegance of Orange Grove Residences through our curated gallery.</p>
+                <div class="w-20 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+            
+            <!-- Gallery Tabs -->
+            <div class="flex flex-wrap justify-center border-b border-gray-200 mb-8">
+                <button class="gallery-tab active px-6 py-3 text-lg font-medium" data-tab="interior">Interior</button>
+                <button class="gallery-tab px-6 py-3 text-lg font-medium" data-tab="exterior">Exterior</button>
+                <button class="gallery-tab px-6 py-3 text-lg font-medium" data-tab="floorplans">Floor Plans</button>
+                <button class="gallery-tab px-6 py-3 text-lg font-medium" data-tab="walkthrough">3D Walkthrough</button>
+            </div>
+            
+            <!-- Gallery Content -->
+            <div class="gallery-content" id="interiorContent">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=luxury%20apartment%20living%20room%20with%20orange%20accents%2C%20modern%20interior%20design%2C%20large%20windows%2C%20contemporary%20furniture%2C%20professional%20real%20estate%20photography&width=400&height=300&seq=9&orientation=landscape" alt="Living Room" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Luxury Living Room</h3>
+                            <p class="text-gray-600 text-sm">Spacious living area with premium finishes</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=modern%20kitchen%20with%20orange%20accents%2C%20high-end%20appliances%2C%20marble%20countertops%2C%20professional%20real%20estate%20photography&width=400&height=300&seq=10&orientation=landscape" alt="Kitchen" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Designer Kitchen</h3>
+                            <p class="text-gray-600 text-sm">Gourmet kitchen with premium appliances</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=luxury%20master%20bedroom%20with%20orange%20accents%2C%20king-size%20bed%2C%20large%20windows%2C%20modern%20furniture%2C%20professional%20real%20estate%20photography&width=400&height=300&seq=11&orientation=landscape" alt="Master Bedroom" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Master Bedroom</h3>
+                            <p class="text-gray-600 text-sm">Elegant bedroom with walk-in closet</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=luxury%20bathroom%20with%20orange%20accents%2C%20marble%20flooring%2C%20walk-in%20shower%2C%20freestanding%20bathtub%2C%20professional%20real%20estate%20photography&width=400&height=300&seq=12&orientation=landscape" alt="Bathroom" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Luxury Bathroom</h3>
+                            <p class="text-gray-600 text-sm">Spa-inspired bathroom with premium fixtures</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=luxury%20dining%20area%20with%20orange%20accents%2C%20large%20dining%20table%2C%20modern%20chandelier%2C%20large%20windows%2C%20professional%20real%20estate%20photography&width=400&height=300&seq=13&orientation=landscape" alt="Dining Area" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Dining Area</h3>
+                            <p class="text-gray-600 text-sm">Elegant dining space for entertaining</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=luxury%20home%20office%20with%20orange%20accents%2C%20modern%20desk%2C%20bookshelf%2C%20large%20windows%2C%20professional%20real%20estate%20photography&width=400&height=300&seq=14&orientation=landscape" alt="Home Office" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Home Office</h3>
+                            <p class="text-gray-600 text-sm">Dedicated workspace with built-in storage</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-content hidden" id="exteriorContent">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=luxury%20residential%20building%20exterior%20with%20orange%20accents%2C%20modern%20architecture%2C%20landscaped%20entrance%2C%20professional%20real%20estate%20photography&width=400&height=300&seq=15&orientation=landscape" alt="Building Exterior" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Building Exterior</h3>
+                            <p class="text-gray-600 text-sm">Contemporary architecture with premium finishes</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=luxury%20swimming%20pool%20with%20orange%20accents%2C%20lounge%20chairs%2C%20palm%20trees%2C%20modern%20architecture%2C%20professional%20real%20estate%20photography&width=400&height=300&seq=16&orientation=landscape" alt="Swimming Pool" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Swimming Pool</h3>
+                            <p class="text-gray-600 text-sm">Infinity pool with poolside lounging areas</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=luxury%20residential%20entrance%20lobby%20with%20orange%20accents%2C%20modern%20reception%20desk%2C%20seating%20area%2C%20professional%20real%20estate%20photography&width=400&height=300&seq=17&orientation=landscape" alt="Entrance Lobby" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Entrance Lobby</h3>
+                            <p class="text-gray-600 text-sm">Grand reception area with concierge service</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=luxury%20landscaped%20garden%20with%20orange%20flowers%2C%20walking%20paths%2C%20seating%20areas%2C%20professional%20real%20estate%20photography&width=400&height=300&seq=18&orientation=landscape" alt="Landscaped Gardens" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Landscaped Gardens</h3>
+                            <p class="text-gray-600 text-sm">Beautifully maintained gardens with walking paths</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=luxury%20clubhouse%20exterior%20with%20orange%20accents%2C%20modern%20architecture%2C%20outdoor%20seating%2C%20professional%20real%20estate%20photography&width=400&height=300&seq=19&orientation=landscape" alt="Clubhouse" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Clubhouse</h3>
+                            <p class="text-gray-600 text-sm">Exclusive clubhouse with premium amenities</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=luxury%20tennis%20court%20with%20orange%20accents%2C%20professional%20lighting%2C%20modern%20facilities%2C%20professional%20real%20estate%20photography&width=400&height=300&seq=20&orientation=landscape" alt="Tennis Court" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Tennis Court</h3>
+                            <p class="text-gray-600 text-sm">Professional-grade tennis facilities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-content hidden" id="floorplansContent">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=1%20BHK%20apartment%20floor%20plan%20with%20orange%20accents%2C%20clear%20measurements%2C%20modern%20layout%2C%20professional%20architectural%20drawing&width=400&height=300&seq=21&orientation=landscape" alt="1 BHK Floor Plan" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">1 BHK Floor Plan</h3>
+                            <p class="text-gray-600 text-sm">650 sq.ft. | 1 Bedroom | 1 Bathroom</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=2%20BHK%20apartment%20floor%20plan%20with%20orange%20accents%2C%20clear%20measurements%2C%20modern%20layout%2C%20professional%20architectural%20drawing&width=400&height=300&seq=22&orientation=landscape" alt="2 BHK Floor Plan" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">2 BHK Floor Plan</h3>
+                            <p class="text-gray-600 text-sm">1100 sq.ft. | 2 Bedrooms | 2 Bathrooms</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=3%20BHK%20apartment%20floor%20plan%20with%20orange%20accents%2C%20clear%20measurements%2C%20modern%20layout%2C%20professional%20architectural%20drawing&width=400&height=300&seq=23&orientation=landscape" alt="3 BHK Floor Plan" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">3 BHK Floor Plan</h3>
+                            <p class="text-gray-600 text-sm">1850 sq.ft. | 3 Bedrooms | 3 Bathrooms</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=villa%20floor%20plan%20with%20orange%20accents%2C%20clear%20measurements%2C%20modern%20layout%2C%20professional%20architectural%20drawing&width=400&height=300&seq=24&orientation=landscape" alt="Villa Floor Plan" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Villa Floor Plan</h3>
+                            <p class="text-gray-600 text-sm">3500 sq.ft. | 4 Bedrooms | 4.5 Bathrooms</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=penthouse%20floor%20plan%20with%20orange%20accents%2C%20clear%20measurements%2C%20modern%20layout%2C%20professional%20architectural%20drawing&width=400&height=300&seq=25&orientation=landscape" alt="Penthouse Floor Plan" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Penthouse Floor Plan</h3>
+                            <p class="text-gray-600 text-sm">4500 sq.ft. | 5 Bedrooms | 5.5 Bathrooms</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <img src="https://readdy.ai/api/search-image?query=studio%20apartment%20floor%20plan%20with%20orange%20accents%2C%20clear%20measurements%2C%20modern%20layout%2C%20professional%20architectural%20drawing&width=400&height=300&seq=26&orientation=landscape" alt="Studio Floor Plan" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Studio Floor Plan</h3>
+                            <p class="text-gray-600 text-sm">450 sq.ft. | Studio | 1 Bathroom</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-content hidden" id="walkthroughContent">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=3D%20walkthrough%20of%20luxury%20apartment%20interior%20with%20orange%20accents%2C%20photorealistic%20rendering%2C%20modern%20design%2C%20professional%20real%20estate%20visualization&width=600&height=400&seq=27&orientation=landscape" alt="Apartment Walkthrough" class="w-full h-80 object-cover object-top">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center cursor-pointer">
+                                    <i class="ri-play-fill text-white ri-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Luxury Apartment Walkthrough</h3>
+                            <p class="text-gray-600 text-sm">Experience the premium finishes and spacious layout</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=3D%20walkthrough%20of%20luxury%20villa%20exterior%20with%20orange%20accents%2C%20photorealistic%20rendering%2C%20modern%20architecture%2C%20professional%20real%20estate%20visualization&width=600&height=400&seq=28&orientation=landscape" alt="Villa Walkthrough" class="w-full h-80 object-cover object-top">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center cursor-pointer">
+                                    <i class="ri-play-fill text-white ri-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Premium Villa Walkthrough</h3>
+                            <p class="text-gray-600 text-sm">Tour the exclusive villa with private garden</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=3D%20walkthrough%20of%20luxury%20residential%20amenities%20with%20orange%20accents%2C%20swimming%20pool%2C%20gym%2C%20clubhouse%2C%20photorealistic%20rendering%2C%20professional%20real%20estate%20visualization&width=600&height=400&seq=29&orientation=landscape" alt="Amenities Walkthrough" class="w-full h-80 object-cover object-top">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center cursor-pointer">
+                                    <i class="ri-play-fill text-white ri-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Amenities Walkthrough</h3>
+                            <p class="text-gray-600 text-sm">Explore the world-class amenities at Orange Grove</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=3D%20walkthrough%20of%20luxury%20penthouse%20with%20orange%20accents%2C%20panoramic%20views%2C%20spacious%20terrace%2C%20photorealistic%20rendering%2C%20professional%20real%20estate%20visualization&width=600&height=400&seq=30&orientation=landscape" alt="Penthouse Walkthrough" class="w-full h-80 object-cover object-top">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center cursor-pointer">
+                                    <i class="ri-play-fill text-white ri-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-white">
+                            <h3 class="font-medium text-gray-900">Penthouse Walkthrough</h3>
+                            <p class="text-gray-600 text-sm">Experience luxury living with panoramic views</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Price Insights</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Transparent pricing information to help you make an informed decision.</p>
+                <div class="w-20 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12 mb-16">
+                <div class="lg:w-1/2">
+                    <h3 class="text-2xl font-semibold mb-6">Price Trends</h3>
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <div id="priceChart" class="w-full h-80"></div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <h3 class="text-2xl font-semibold mb-6">Average Price</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg shadow-lg p-6">
+                            <h4 class="text-lg font-medium text-gray-700 mb-2">Price per sq.ft.</h4>
+                            <div class="flex items-end">
+                                <span class="text-4xl font-bold text-primary">$650</span>
+                                <span class="text-gray-500 ml-2">/ sq.ft.</span>
+                            </div>
+                            <p class="text-gray-600 mt-2">Average price across all property types</p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-lg p-6">
+                            <h4 class="text-lg font-medium text-gray-700 mb-2">Appreciation Rate</h4>
+                            <div class="flex items-end">
+                                <span class="text-4xl font-bold text-primary">12%</span>
+                                <span class="text-gray-500 ml-2">/ year</span>
+                            </div>
+                            <p class="text-gray-600 mt-2">Average annual appreciation rate</p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-lg p-6">
+                            <h4 class="text-lg font-medium text-gray-700 mb-2">Starting Price</h4>
+                            <div class="flex items-end">
+                                <span class="text-4xl font-bold text-primary">$280K</span>
+                            </div>
+                            <p class="text-gray-600 mt-2">Studio apartments starting price</p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-lg p-6">
+                            <h4 class="text-lg font-medium text-gray-700 mb-2">Premium Properties</h4>
+                            <div class="flex items-end">
+                                <span class="text-4xl font-bold text-primary">$1.8M+</span>
+                            </div>
+                            <p class="text-gray-600 mt-2">Penthouses and luxury villas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold mb-6">Detailed Pricing</h3>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Property Type</th>
+                                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Configuration</th>
+                                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Area (sq.ft.)</th>
+                                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Price Range</th>
+                                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Price per sq.ft.</th>
+                                    <th class="px-6 py-4 text-center text-sm font-medium text-gray-700">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 text-sm text-gray-700">Studio Apartment</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">Studio</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">450 - 550</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">$280K - $350K</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">$620 - $640</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="bg-primary text-white px-4 py-1 text-sm font-medium !rounded-button whitespace-nowrap">Enquire</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-sm text-gray-700">Apartment</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">1 BHK</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">650 - 750</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">$450K - $520K</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">$630 - $650</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="bg-primary text-white px-4 py-1 text-sm font-medium !rounded-button whitespace-nowrap">Enquire</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-sm text-gray-700">Apartment</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">2 BHK</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">1100 - 1300</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">$720K - $850K</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">$640 - $660</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="bg-primary text-white px-4 py-1 text-sm font-medium !rounded-button whitespace-nowrap">Enquire</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-sm text-gray-700">Apartment</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">3 BHK</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">1600 - 1850</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">$1.05M - $1.25M</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">$650 - $680</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="bg-primary text-white px-4 py-1 text-sm font-medium !rounded-button whitespace-nowrap">Enquire</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-sm text-gray-700">Duplex</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">3 BHK</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">1800 - 2200</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">$1.2M - $1.45M</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">$660 - $680</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="bg-primary text-white px-4 py-1 text-sm font-medium !rounded-button whitespace-nowrap">Enquire</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-sm text-gray-700">Villa</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">4 BHK</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">3000 - 3500</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">$1.95M - $2.3M</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">$650 - $670</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="bg-primary text-white px-4 py-1 text-sm font-medium !rounded-button whitespace-nowrap">Enquire</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-sm text-gray-700">Penthouse</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">5 BHK</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">4500 - 5500</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">$2.9M - $3.6M</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">$650 - $670</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="bg-primary text-white px-4 py-1 text-sm font-medium !rounded-button whitespace-nowrap">Enquire</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <p class="text-gray-600 mb-6">Interested in learning more about our pricing and payment plans?</p>
+                <button class="bg-primary text-white px-8 py-3 font-medium !rounded-button whitespace-nowrap inline-flex items-center">
+                    <i class="ri-customer-service-2-line mr-2"></i>
+                    Contact Our Sales Team
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Prime Location</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Strategically located with easy access to essential amenities and major landmarks.</p>
+                <div class="w-20 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden h-full">
+                        <div class="h-full w-full" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center; min-height: 500px;"></div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="bg-white rounded-lg shadow-lg p-8 h-full">
+                        <h3 class="text-2xl font-semibold mb-6">Nearby Landmarks</h3>
+                        
+                        <div class="mb-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3">
+                                    <i class="ri-school-line text-primary"></i>
+                                </div>
+                                <h4 class="text-lg font-medium">Education</h4>
+                            </div>
+                            <div class="space-y-3 pl-14">
+                                <div class="flex justify-between">
+                                    <p class="text-gray-700">Cambridge International School</p>
+                                    <span class="text-gray-500">1.2 km</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p class="text-gray-700">St. Mary's College</p>
+                                    <span class="text-gray-500">2.5 km</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p class="text-gray-700">Westlake University</p>
+                                    <span class="text-gray-500">4.8 km</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3">
+                                    <i class="ri-hospital-line text-primary"></i>
+                                </div>
+                                <h4 class="text-lg font-medium">Healthcare</h4>
+                            </div>
+                            <div class="space-y-3 pl-14">
+                                <div class="flex justify-between">
+                                    <p class="text-gray-700">City General Hospital</p>
+                                    <span class="text-gray-500">1.8 km</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p class="text-gray-700">Apollo Medical Center</p>
+                                    <span class="text-gray-500">3.2 km</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p class="text-gray-700">Wellness Clinic</p>
+                                    <span class="text-gray-500">0.9 km</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3">
+                                    <i class="ri-shopping-bag-line text-primary"></i>
+                                </div>
+                                <h4 class="text-lg font-medium">Shopping & Entertainment</h4>
+                            </div>
+                            <div class="space-y-3 pl-14">
+                                <div class="flex justify-between">
+                                    <p class="text-gray-700">Orange Grove Mall</p>
+                                    <span class="text-gray-500">0.5 km</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p class="text-gray-700">Cineplex Multiplex</p>
+                                    <span class="text-gray-500">2.0 km</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p class="text-gray-700">Central Market</p>
+                                    <span class="text-gray-500">1.5 km</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3">
+                                    <i class="ri-train-line text-primary"></i>
+                                </div>
+                                <h4 class="text-lg font-medium">Transportation</h4>
+                            </div>
+                            <div class="space-y-3 pl-14">
+                                <div class="flex justify-between">
+                                    <p class="text-gray-700">Metro Station</p>
+                                    <span class="text-gray-500">0.8 km</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p class="text-gray-700">International Airport</p>
+                                    <span class="text-gray-500">15 km</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p class="text-gray-700">Highway Access</p>
+                                    <span class="text-gray-500">1.0 km</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brochure Download Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="bg-gradient-to-r from-primary/90 to-secondary/90 rounded-lg shadow-xl overflow-hidden">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-2/3 p-8 md:p-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Download Project Brochure</h2>
+                        <p class="text-white/90 mb-8 text-lg">Get detailed information about Orange Grove Residences including floor plans, specifications, amenities, and payment plans.</p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <input type="text" placeholder="Enter your email" class="px-4 py-3 rounded-lg border-none w-full sm:w-64 text-gray-700 focus:outline-none focus:ring-2 focus:ring-white">
+                            <button class="bg-white text-primary px-6 py-3 font-medium !rounded-button whitespace-nowrap flex items-center justify-center">
+                                <i class="ri-download-line mr-2"></i>
+                                Download Now
+                            </button>
+                        </div>
+                        <p class="text-white/70 mt-4 text-sm">By downloading, you agree to our privacy policy and terms of service.</p>
+                    </div>
+                    <div class="md:w-1/3 p-8">
+                        <div class="bg-white p-2 rounded-lg shadow-lg transform rotate-3 hover:rotate-0 transition-transform">
+                            <img src="https://readdy.ai/api/search-image?query=real%20estate%20brochure%20cover%20with%20orange%20accents%2C%20luxury%20property%20brochure%2C%20professional%20marketing%20material&width=300&height=400&seq=31&orientation=portrait" alt="Brochure Preview" class="w-full h-auto rounded">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h1 class="text-3xl font-['Pacifico'] text-primary mb-6">logo</h1>
+                    <p class="text-gray-400 mb-6">Orange Grove Residences is a premium residential project offering luxurious living spaces with world-class amenities.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-primary transition-colors">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-primary transition-colors">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-primary transition-colors">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-primary transition-colors">
+                            <i class="ri-linkedin-fill"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#overview" class="text-gray-400 hover:text-primary transition-colors">Overview</a></li>
+                        <li><a href="#properties" class="text-gray-400 hover:text-primary transition-colors">Properties</a></li>
+                        <li><a href="#amenities" class="text-gray-400 hover:text-primary transition-colors">Amenities</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-primary transition-colors">Gallery</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-primary transition-colors">Pricing</a></li>
+                        <li><a href="#location" class="text-gray-400 hover:text-primary transition-colors">Location</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Contact Us</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="ri-map-pin-line mr-3 mt-1"></i>
+                            <span class="text-gray-400">123 Orange Grove Boulevard, Cityville, State 12345</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-phone-line mr-3"></i>
+                            <span class="text-gray-400">+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-mail-line mr-3"></i>
+                            <span class="text-gray-400">info@orangegroveresidences.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-time-line mr-3"></i>
+                            <span class="text-gray-400">Mon-Sat: 9:00 AM - 6:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Subscribe to receive updates about our project and special offers.</p>
+                    <div class="flex mb-4">
+                        <input type="email" placeholder="Your email address" class="px-4 py-2 rounded-l-lg border-none w-full text-gray-700 focus:outline-none">
+                        <button class="bg-primary text-white px-4 py-2 rounded-r-lg !rounded-button whitespace-nowrap">
+                            <i class="ri-send-plane-fill"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i class="ri-visa-fill text-gray-400 ri-lg"></i>
+                        </div>
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i class="ri-mastercard-fill text-gray-400 ri-lg"></i>
+                        </div>
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i class="ri-paypal-fill text-gray-400 ri-lg"></i>
+                        </div>
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i class="ri-bank-card-fill text-gray-400 ri-lg"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Orange Grove Residences. All rights reserved.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-primary text-sm">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-primary text-sm">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-primary text-sm">Cookie Policy</a>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <p class="text-gray-500 text-xs">RERA Registration: RERA/HYD/2025/1234. All information, plans, specifications are subject to change without notice. Images are for representational purposes only.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Enquiry Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button class="bg-primary text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:bg-primary/90 transition-colors">
+            <i class="ri-customer-service-2-line ri-lg"></i>
+        </button>
+    </div>
+
+    <!-- WhatsApp Chat Widget -->
+    <div class="fixed bottom-6 left-6 z-50">
+        <button class="bg-[#25D366] text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:bg-[#22c55e] transition-colors">
+            <i class="ri-whatsapp-line ri-lg"></i>
+        </button>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+
+        // Property Carousel
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('propertyCarousel');
+            const prevBtn = document.getElementById('prevProperty');
+            const nextBtn = document.getElementById('nextProperty');
+            const dots = document.getElementById('propertyDots').querySelectorAll('button');
+            
+            let scrollAmount = 0;
+            const cardWidth = 320; // Width of each card + gap
+            
+            nextBtn.addEventListener('click', function() {
+                scrollAmount += cardWidth;
+                if (scrollAmount > carousel.scrollWidth - carousel.clientWidth) {
+                    scrollAmount = carousel.scrollWidth - carousel.clientWidth;
+                }
+                carousel.scrollTo({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+                updateDots();
+            });
+            
+            prevBtn.addEventListener('click', function() {
+                scrollAmount -= cardWidth;
+                if (scrollAmount < 0) {
+                    scrollAmount = 0;
+                }
+                carousel.scrollTo({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+                updateDots();
+            });
+            
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.dataset.index);
+                    scrollAmount = index * cardWidth * 3;
+                    carousel.scrollTo({
+                        left: scrollAmount,
+                        behavior: 'smooth'
+                    });
+                    updateActiveDot(index);
+                });
+            });
+            
+            function updateDots() {
+                const index = Math.floor(scrollAmount / (cardWidth * 3));
+                updateActiveDot(index);
+            }
+            
+            function updateActiveDot(index) {
+                dots.forEach((dot, i) => {
+                    if (i === index) {
+                        dot.classList.remove('bg-gray-300');
+                        dot.classList.add('bg-primary');
+                    } else {
+                        dot.classList.remove('bg-primary');
+                        dot.classList.add('bg-gray-300');
+                    }
+                });
+            }
+        });
+
+        // Amenities Tabs
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.amenity-tab');
+            const contents = document.querySelectorAll('.amenity-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const target = this.dataset.tab;
+                    
+                    // Update active tab
+                    tabs.forEach(t => {
+                        if (t.dataset.tab === target) {
+                            t.classList.add('active', 'bg-primary', 'text-white');
+                            t.classList.remove('bg-gray-100', 'text-gray-700');
+                        } else {
+                            t.classList.remove('active', 'bg-primary', 'text-white');
+                            t.classList.add('bg-gray-100', 'text-gray-700');
+                        }
+                    });
+                    
+                    // Show content
+                    contents.forEach(content => {
+                        if (content.id === target + 'Content') {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        });
+
+        // Gallery Tabs
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.gallery-tab');
+            const contents = document.querySelectorAll('.gallery-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const target = this.dataset.tab;
+                    
+                    // Update active tab
+                    tabs.forEach(t => {
+                        if (t.dataset.tab === target) {
+                            t.classList.add('active');
+                        } else {
+                            t.classList.remove('active');
+                        }
+                    });
+                    
+                    // Show content
+                    contents.forEach(content => {
+                        if (content.id === target + 'Content') {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        });
+
+        // Price Chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const chartDom = document.getElementById('priceChart');
+            const myChart = echarts.init(chartDom);
+            
+            const option = {
+                animation: false,
+                tooltip: {
+                    trigger: 'axis',
+                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                    borderColor: '#eee',
+                    borderWidth: 1,
+                    textStyle: {
+                        color: '#1f2937'
+                    }
+                },
+                legend: {
+                    data: ['Average Price ($/sq.ft.)'],
+                    textStyle: {
+                        color: '#1f2937'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['2020', '2021', '2022', '2023', '2024', '2025'],
+                    axisLine: {
+                        lineStyle: {
+                            color: '#ddd'
+                        }
+                    },
+                    axisLabel: {
+                        color: '#1f2937'
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLine: {
+                        lineStyle: {
+                            color: '#ddd'
+                        }
+                    },
+                    axisLabel: {
+                        color: '#1f2937',
+                        formatter: '${value}'
+                    },
+                    splitLine: {
+                        lineStyle: {
+                            color: '#eee'
+                        }
+                    }
+                },
+                series: [
+                    {
+                        name: 'Average Price ($/sq.ft.)',
+                        type: 'line',
+                        smooth: true,
+                        lineStyle: {
+                            width: 3,
+                            color: 'rgba(87, 181, 231, 1)'
+                        },
+                        areaStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                {
+                                    offset: 0,
+                                    color: 'rgba(87, 181, 231, 0.3)'
+                                },
+                                {
+                                    offset: 1,
+                                    color: 'rgba(87, 181, 231, 0.1)'
+                                }
+                            ])
+                        },
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: [450, 480, 520, 570, 610, 650]
+                    }
+                ]
+            };
+            
+            myChart.setOption(option);
+            
+            window.addEventListener('resize', function() {
+                myChart.resize();
+            });
+        });
+
+        // Smooth Scroll for Navigation Links
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        const mobileMenu = document.getElementById('mobileMenu');
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
