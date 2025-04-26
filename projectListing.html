@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real Estate Listings</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#ff4b4b", secondary: "#4b7bff" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+          font-family: 'Inter', sans-serif;
+      }
+      .filter-pill {
+          transition: all 0.3s ease;
+      }
+      .filter-pill.active {
+          background-color: #ff4b4b;
+          color: white;
+      }
+      .property-card {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .property-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+      <div
+        class="container mx-auto px-4 py-4 flex items-center justify-between"
+      >
+        <div class="text-2xl font-['Pacifico'] text-primary">logo</div>
+        <div class="flex items-center space-x-4">
+          <div class="relative w-10 h-10 flex items-center justify-center">
+            <i class="ri-search-line ri-xl"></i>
+          </div>
+          <div class="relative w-10 h-10 flex items-center justify-center">
+            <i class="ri-heart-line ri-xl"></i>
+          </div>
+          <div class="relative w-10 h-10 flex items-center justify-center">
+            <i class="ri-user-line ri-xl"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold mb-6">Find Your Dream Property</h1>
+
+        <div class="flex flex-wrap items-center gap-4 mb-8">
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 left-3 flex items-center pointer-events-none"
+            >
+              <i class="ri-map-pin-line text-gray-400"></i>
+            </div>
+            <input
+              type="text"
+              placeholder="Location"
+              class="pl-10 pr-4 py-2 border border-gray-200 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+            />
+          </div>
+
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 left-3 flex items-center pointer-events-none"
+            >
+              <i class="ri-money-dollar-circle-line text-gray-400"></i>
+            </div>
+            <input
+              type="number"
+              placeholder="Min Price"
+              class="pl-10 pr-4 py-2 border border-gray-200 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+            />
+          </div>
+
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 left-3 flex items-center pointer-events-none"
+            >
+              <i class="ri-money-dollar-circle-line text-gray-400"></i>
+            </div>
+            <input
+              type="number"
+              placeholder="Max Price"
+              class="pl-10 pr-4 py-2 border border-gray-200 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+            />
+          </div>
+
+          <button
+            class="bg-primary text-white px-6 py-2 rounded-button whitespace-nowrap flex items-center gap-2"
+          >
+            <i class="ri-filter-3-line"></i>
+            Apply Filters
+          </button>
+        </div>
+
+        <div class="flex flex-wrap gap-3 mb-8">
+          <button
+            class="filter-pill active px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap"
+          >
+            Apartments
+          </button>
+          <button
+            class="filter-pill bg-gray-100 px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap"
+          >
+            Offices
+          </button>
+          <button
+            class="filter-pill bg-gray-100 px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap"
+          >
+            Villas
+          </button>
+          <button
+            class="filter-pill bg-gray-100 px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap"
+          >
+            Plots
+          </button>
+          <button
+            class="filter-pill bg-gray-100 px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap"
+          >
+            Shops
+          </button>
+          <button
+            class="filter-pill bg-gray-100 px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap"
+          >
+            Row Houses
+          </button>
+        </div>
+
+        <div class="flex justify-between items-center mb-6">
+          <p class="text-gray-600">
+            Showing <span class="font-semibold">24</span> properties
+          </p>
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-gray-600">Sort by:</span>
+            <div class="relative">
+              <button
+                class="bg-white border border-gray-200 rounded px-4 py-2 text-sm flex items-center gap-2 whitespace-nowrap"
+              >
+                Newest First
+                <i class="ri-arrow-down-s-line"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Property Card 1 -->
+        <div
+          class="property-card bg-white rounded-lg overflow-hidden shadow-sm"
+        >
+          <div class="relative h-48">
+            <img
+              src="https://readdy.ai/api/search-image?query=modern%20luxury%20residential%20apartment%20buildings%20with%20green%20landscaped%20gardens%2C%20tall%20skyscrapers%20in%20background%2C%20beautiful%20architecture%2C%20clean%20environment%2C%20blue%20sky%20with%20some%20clouds%2C%20photorealistic&width=800&height=400&seq=1&orientation=landscape"
+              alt="Skyline Residences"
+              class="w-full h-full object-cover object-top"
+            />
+          </div>
+          <div class="p-4">
+            <h2 class="text-xl font-bold mb-1">Skyline Residences</h2>
+            <div class="flex items-center text-sm text-gray-600 mb-3">
+              <i class="ri-map-pin-line text-primary mr-1"></i>
+              <span>Wakad, Pune Maharashtra</span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-gray-100 text-xs px-3 py-1 rounded-full"
+                >Apartments</span
+              >
+              <span class="bg-gray-100 text-xs px-3 py-1 rounded-full"
+                >Offices</span
+              >
+              <span class="bg-gray-100 text-xs px-3 py-1 rounded-full"
+                >Villas</span
+              >
+              <span class="bg-gray-100 text-xs px-3 py-1 rounded-full"
+                >Plots</span
+              >
+              <span class="bg-gray-100 text-xs px-3 py-1 rounded-full"
+                >Shops</span
+              >
+            </div>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Amenities</h3>
+            <div class="grid grid-cols-4 gap-2 mb-4">
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-community-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Gated</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-heart-pulse-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Gym</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-water-flash-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Pool</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-building-2-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Clubhouse</span>
+              </div>
+            </div>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Project Brief</h3>
+            <p class="text-sm text-gray-600 mb-4">
+              Skyline Residences offers a perfect blend of modern living and
+              natural beauty across with high-end amenities. Located in prime
+              area. The development features spacious apartments, gardens, work,
+              and leisure spaces with world-class facilities like library,
+              fitness centers, and more.
+            </p>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Details</h3>
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-calendar-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Start on</p>
+                  <p class="text-sm font-medium">Jan, 2025</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-calendar-check-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Possession By</p>
+                  <p class="text-sm font-medium">May, 2025</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-ruler-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Area</p>
+                  <p class="text-sm font-medium">800sq ft - 1500 sq ft</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-building-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Type</p>
+                  <p class="text-sm font-medium">Residential + Commercial</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2">
+              <button
+                class="bg-primary text-white py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Call Now
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Enquire
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Brochure
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Floor Plan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Property Card 2 -->
+        <div
+          class="property-card bg-white rounded-lg overflow-hidden shadow-sm"
+        >
+          <div class="relative h-48">
+            <img
+              src="https://readdy.ai/api/search-image?query=modern%20luxury%20villa%20community%20with%20swimming%20pools%20and%20landscaped%20gardens%2C%20contemporary%20architecture%2C%20palm%20trees%2C%20blue%20sky%2C%20photorealistic&width=800&height=400&seq=2&orientation=landscape"
+              alt="Palm Grove Villas"
+              class="w-full h-full object-cover object-top"
+            />
+          </div>
+          <div class="p-4">
+            <h2 class="text-xl font-bold mb-1">Palm Grove Villas</h2>
+            <div class="flex items-center text-sm text-gray-600 mb-3">
+              <i class="ri-map-pin-line text-primary mr-1"></i>
+              <span>Koregaon Park, Pune Maharashtra</span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-gray-100 text-xs px-3 py-1 rounded-full"
+                >Villas</span
+              >
+              <span class="bg-gray-100 text-xs px-3 py-1 rounded-full"
+                >Plots</span
+              >
+            </div>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Amenities</h3>
+            <div class="grid grid-cols-4 gap-2 mb-4">
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-community-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Gated</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-water-flash-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Pool</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-building-2-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Clubhouse</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-run-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Walking Track</span>
+              </div>
+            </div>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Project Brief</h3>
+            <p class="text-sm text-gray-600 mb-4">
+              Palm Grove Villas offers luxurious living in a serene environment
+              with premium amenities. These exclusive villas feature spacious
+              layouts, private gardens, and contemporary design. Enjoy
+              resort-style living with world-class facilities in one of Pune's
+              most prestigious neighborhoods.
+            </p>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Details</h3>
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-calendar-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Start on</p>
+                  <p class="text-sm font-medium">Feb, 2025</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-calendar-check-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Possession By</p>
+                  <p class="text-sm font-medium">Aug, 2025</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-ruler-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Area</p>
+                  <p class="text-sm font-medium">2500sq ft - 4000 sq ft</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-building-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Type</p>
+                  <p class="text-sm font-medium">Residential</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2">
+              <button
+                class="bg-primary text-white py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Call Now
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Enquire
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Brochure
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Floor Plan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Property Card 3 -->
+        <div
+          class="property-card bg-white rounded-lg overflow-hidden shadow-sm"
+        >
+          <div class="relative h-48">
+            <img
+              src="https://readdy.ai/api/search-image?query=modern%20commercial%20office%20building%20with%20glass%20facade%2C%20business%20district%2C%20professional%20environment%2C%20clean%20architecture%2C%20blue%20sky%2C%20photorealistic&width=800&height=400&seq=3&orientation=landscape"
+              alt="Horizon Business Park"
+              class="w-full h-full object-cover object-top"
+            />
+          </div>
+          <div class="p-4">
+            <h2 class="text-xl font-bold mb-1">Horizon Business Park</h2>
+            <div class="flex items-center text-sm text-gray-600 mb-3">
+              <i class="ri-map-pin-line text-primary mr-1"></i>
+              <span>Hinjewadi, Pune Maharashtra</span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-gray-100 text-xs px-3 py-1 rounded-full"
+                >Offices</span
+              >
+              <span class="bg-gray-100 text-xs px-3 py-1 rounded-full"
+                >Shops</span
+              >
+            </div>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Amenities</h3>
+            <div class="grid grid-cols-4 gap-2 mb-4">
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-parking-box-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Parking</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-restaurant-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Food Court</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-cctv-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">CCTV</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-wifi-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Wi-Fi</span>
+              </div>
+            </div>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Project Brief</h3>
+            <p class="text-sm text-gray-600 mb-4">
+              Horizon Business Park is a premium commercial development designed
+              for modern businesses. With state-of-the-art infrastructure,
+              flexible office spaces, and strategic location in Pune's IT hub,
+              it offers the perfect environment for companies to thrive and
+              expand their operations.
+            </p>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Details</h3>
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-calendar-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Start on</p>
+                  <p class="text-sm font-medium">Mar, 2025</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-calendar-check-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Possession By</p>
+                  <p class="text-sm font-medium">Sep, 2025</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-ruler-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Area</p>
+                  <p class="text-sm font-medium">1000sq ft - 5000 sq ft</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-building-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Type</p>
+                  <p class="text-sm font-medium">Commercial</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2">
+              <button
+                class="bg-primary text-white py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Call Now
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Enquire
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Brochure
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Floor Plan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Property Card 4 -->
+        <div
+          class="property-card bg-white rounded-lg overflow-hidden shadow-sm"
+        >
+          <div class="relative h-48">
+            <img
+              src="https://readdy.ai/api/search-image?query=modern%20residential%20township%20with%20multiple%20apartment%20buildings%2C%20green%20parks%2C%20swimming%20pools%2C%20walking%20paths%2C%20families%20enjoying%20outdoor%20activities%2C%20blue%20sky%2C%20photorealistic&width=800&height=400&seq=4&orientation=landscape"
+              alt="Green Valley Township"
+              class="w-full h-full object-cover object-top"
+            />
+          </div>
+          <div class="p-4">
+            <h2 class="text-xl font-bold mb-1">Green Valley Township</h2>
+            <div class="flex items-center text-sm text-gray-600 mb-3">
+              <i class="ri-map-pin-line text-primary mr-1"></i>
+              <span>Kharadi, Pune Maharashtra</span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-gray-100 text-xs px-3 py-1 rounded-full"
+                >Apartments</span
+              >
+              <span class="bg-gray-100 text-xs px-3 py-1 rounded-full"
+                >Villas</span
+              >
+              <span class="bg-gray-100 text-xs px-3 py-1 rounded-full"
+                >Row Houses</span
+              >
+            </div>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Amenities</h3>
+            <div class="grid grid-cols-4 gap-2 mb-4">
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-community-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Gated</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-heart-pulse-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Gym</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-water-flash-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Pool</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-run-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Walking Track</span>
+              </div>
+            </div>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Project Brief</h3>
+            <p class="text-sm text-gray-600 mb-4">
+              Green Valley Township is a comprehensive residential community
+              offering a variety of housing options amid lush greenery. This
+              self-contained township features excellent infrastructure,
+              recreational facilities, and essential services, creating a
+              balanced lifestyle for residents of all ages.
+            </p>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Details</h3>
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-calendar-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Start on</p>
+                  <p class="text-sm font-medium">Apr, 2025</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-calendar-check-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Possession By</p>
+                  <p class="text-sm font-medium">Oct, 2025</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-ruler-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Area</p>
+                  <p class="text-sm font-medium">600sq ft - 3500 sq ft</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-building-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Type</p>
+                  <p class="text-sm font-medium">Residential</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2">
+              <button
+                class="bg-primary text-white py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Call Now
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Enquire
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Brochure
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Floor Plan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Property Card 5 -->
+        <div
+          class="property-card bg-white rounded-lg overflow-hidden shadow-sm"
+        >
+          <div class="relative h-48">
+            <img
+              src="https://readdy.ai/api/search-image?query=modern%20retail%20shopping%20complex%20with%20glass%20storefronts%2C%20outdoor%20plaza%2C%20shoppers%2C%20contemporary%20architecture%2C%20clean%20environment%2C%20blue%20sky%2C%20photorealistic&width=800&height=400&seq=5&orientation=landscape"
+              alt="Metro Retail Plaza"
+              class="w-full h-full object-cover object-top"
+            />
+          </div>
+          <div class="p-4">
+            <h2 class="text-xl font-bold mb-1">Metro Retail Plaza</h2>
+            <div class="flex items-center text-sm text-gray-600 mb-3">
+              <i class="ri-map-pin-line text-primary mr-1"></i>
+              <span>Aundh, Pune Maharashtra</span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-gray-100 text-xs px-3 py-1 rounded-full"
+                >Shops</span
+              >
+              <span class="bg-gray-100 text-xs px-3 py-1 rounded-full"
+                >Offices</span
+              >
+            </div>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Amenities</h3>
+            <div class="grid grid-cols-4 gap-2 mb-4">
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-parking-box-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Parking</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-cctv-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">CCTV</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-lift-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">LIFT</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-wifi-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Wi-Fi</span>
+              </div>
+            </div>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Project Brief</h3>
+            <p class="text-sm text-gray-600 mb-4">
+              Metro Retail Plaza is a premium shopping destination featuring a
+              diverse mix of retail outlets, dining options, and entertainment
+              venues. Strategically located in Aundh, this modern commercial
+              complex offers excellent visibility, high footfall, and
+              state-of-the-art facilities for businesses.
+            </p>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Details</h3>
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-calendar-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Start on</p>
+                  <p class="text-sm font-medium">May, 2025</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-calendar-check-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Possession By</p>
+                  <p class="text-sm font-medium">Nov, 2025</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-ruler-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Area</p>
+                  <p class="text-sm font-medium">300sq ft - 2000 sq ft</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-building-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Type</p>
+                  <p class="text-sm font-medium">Commercial</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2">
+              <button
+                class="bg-primary text-white py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Call Now
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Enquire
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Brochure
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Floor Plan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Property Card 6 -->
+        <div
+          class="property-card bg-white rounded-lg overflow-hidden shadow-sm"
+        >
+          <div class="relative h-48">
+            <img
+              src="https://readdy.ai/api/search-image?query=premium%20residential%20row%20houses%20with%20modern%20architecture%2C%20landscaped%20front%20yards%2C%20clean%20streets%2C%20suburban%20community%2C%20blue%20sky%2C%20photorealistic&width=800&height=400&seq=6&orientation=landscape"
+              alt="Harmony Row Houses"
+              class="w-full h-full object-cover object-top"
+            />
+          </div>
+          <div class="p-4">
+            <h2 class="text-xl font-bold mb-1">Harmony Row Houses</h2>
+            <div class="flex items-center text-sm text-gray-600 mb-3">
+              <i class="ri-map-pin-line text-primary mr-1"></i>
+              <span>Baner, Pune Maharashtra</span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-gray-100 text-xs px-3 py-1 rounded-full"
+                >Row Houses</span
+              >
+            </div>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Amenities</h3>
+            <div class="grid grid-cols-4 gap-2 mb-4">
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-community-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Gated</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-water-flash-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Pool</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-building-2-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Clubhouse</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mb-1"
+                >
+                  <i class="ri-run-line text-gray-600"></i>
+                </div>
+                <span class="text-xs text-gray-600">Walking Track</span>
+              </div>
+            </div>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Project Brief</h3>
+            <p class="text-sm text-gray-600 mb-4">
+              Harmony Row Houses offers elegant living spaces that combine
+              privacy with community living. Each row house features modern
+              architecture, spacious interiors, and private gardens. The
+              development includes shared amenities and is located in the
+              desirable Baner area with excellent connectivity.
+            </p>
+
+            <h3 class="font-semibold text-gray-800 mb-2">Details</h3>
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-calendar-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Start on</p>
+                  <p class="text-sm font-medium">Jun, 2025</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-calendar-check-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Possession By</p>
+                  <p class="text-sm font-medium">Dec, 2025</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-ruler-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Area</p>
+                  <p class="text-sm font-medium">1800sq ft - 2200 sq ft</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center mr-2"
+                >
+                  <i class="ri-building-line text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Type</p>
+                  <p class="text-sm font-medium">Residential</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2">
+              <button
+                class="bg-primary text-white py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Call Now
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Enquire
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Brochure
+              </button>
+              <button
+                class="bg-white border border-gray-200 py-2 rounded-button text-sm whitespace-nowrap"
+              >
+                Floor Plan
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 flex justify-center">
+        <nav class="flex items-center">
+          <button
+            class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 mr-2"
+          >
+            <i class="ri-arrow-left-s-line"></i>
+          </button>
+          <button
+            class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white mr-2"
+          >
+            1
+          </button>
+          <button
+            class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 mr-2"
+          >
+            2
+          </button>
+          <button
+            class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 mr-2"
+          >
+            3
+          </button>
+          <button
+            class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 mr-2"
+          >
+            4
+          </button>
+          <button
+            class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200"
+          >
+            <i class="ri-arrow-right-s-line"></i>
+          </button>
+        </nav>
+      </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white mt-16">
+      <div class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-xl font-['Pacifico'] mb-4">logo</h3>
+            <p class="text-gray-400 mb-4">
+              Your trusted partner in finding the perfect property. We connect
+              buyers, sellers, and investors with exceptional real estate
+              opportunities.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center"
+              >
+                <i class="ri-facebook-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center"
+              >
+                <i class="ri-twitter-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center"
+              >
+                <i class="ri-instagram-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center"
+              >
+                <i class="ri-linkedin-fill"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Home</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Properties</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">About Us</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Contact</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Blog</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Property Types</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Apartments</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Villas</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Offices</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Shops</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Plots</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <div class="w-5 h-5 flex items-center justify-center mt-1 mr-3">
+                  <i class="ri-map-pin-line text-primary"></i>
+                </div>
+                <span class="text-gray-400"
+                  >123 Business Park, Pune, Maharashtra, India</span
+                >
+              </li>
+              <li class="flex items-start">
+                <div class="w-5 h-5 flex items-center justify-center mt-1 mr-3">
+                  <i class="ri-phone-line text-primary"></i>
+                </div>
+                <span class="text-gray-400">+91 98765 43210</span>
+              </li>
+              <li class="flex items-start">
+                <div class="w-5 h-5 flex items-center justify-center mt-1 mr-3">
+                  <i class="ri-mail-line text-primary"></i>
+                </div>
+                <span class="text-gray-400">info@realestate.com</span>
+              </li>
+            </ul>
+
+            <div class="mt-6">
+              <h3 class="text-lg font-semibold mb-3">Newsletter</h3>
+              <div class="flex">
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  class="px-4 py-2 rounded-l-button w-full focus:outline-none text-gray-800"
+                />
+                <button
+                  class="bg-primary text-white px-4 py-2 rounded-r-button whitespace-nowrap"
+                >
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            © 2025 Real Estate. All rights reserved.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white text-sm"
+              >Privacy Policy</a
+            >
+            <a href="#" class="text-gray-400 hover:text-white text-sm"
+              >Terms of Service</a
+            >
+            <a href="#" class="text-gray-400 hover:text-white text-sm"
+              >Cookie Policy</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const filterPills = document.querySelectorAll(".filter-pill");
+
+        filterPills.forEach((pill) => {
+          pill.addEventListener("click", function () {
+            filterPills.forEach((p) => p.classList.remove("active"));
+            this.classList.add("active");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
